@@ -1,0 +1,21 @@
+{
+	"name": "kill",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"dependencies": {
+		"aequery": "^0.7.1",
+		"types-for-adobe": "github:docsforadobe/Types-for-Adobe"
+	},
+	"devDependencies": {
+		"@types/node": "^20.10.6"
+	},
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"build": "tsc -p .",
+		"watch": "tsc -p . --watch"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC"
+}

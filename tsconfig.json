@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "allowJs": true,
+    "target": "ES5",
+    "noLib": true,
+    "outDir": "dist",
+    "types": [
+      "types-for-adobe/AfterEffects/23.0"
+    ]
+
+  },
+  "exclude": [
+    "node_modules",
+    "dist",
+    "lib",
+    "**/*.js"
+  ]
+}

@@ -1,0 +1,34 @@
+//@target aftereffects
+
+(function () {
+	//@include "../lib/aequery.js"
+
+	const DEST = '/Users/ian/tmp/ae/layers.out.txt'
+	alert(Folder.userData.fullName)
+
+	const f = new File(DEST)
+	f.lineFeed = "Unix"
+	f.open("w")
+
+	let allComps = app.project.selection
+
+	for (var c = 0; c < allComps.length; c++) {
+		var current = allComps[c];
+		if (current instanceof CompItem) {
+			writeLn(current.name)
+
+		}
+	}
+
+
+	// for (var c = 1; c <= thisComp.layers.length; c++) {
+	// 	let currentLayer = thisComp.layers[c]
+	// 	f.writeln(currentLayer.name)
+	// 	writeLn(currentLayer.name)
+
+	// }
+
+	f.close()
+
+
+})();
