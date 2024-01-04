@@ -18,18 +18,14 @@ declare var JSON: any;
 	const compID = fuzzyFileToOpen.readln()
 	const compIDNum = parseInt(compID)
 
-
-	
-	// writeLn(compName)
 	fuzzyFileToOpen.close()
 
-	// let c = aeq.getComposition(compID) as CompItem
-	let c = app.project.itemByID(compIDNum) as CompItem
-	if (c) {
-		writeLn(`Yep: ${c.name}`)
+	let compToOpen = app.project.itemByID(compIDNum) as CompItem
+	if (compToOpen) {
+		writeLn(`Yep: ${compToOpen.name}`)
 	} else {
 		throw new Error(`Error: couldn't open comp ID: "${compID.toString()}"`)
 	}
-	c.openInViewer()
+	compToOpen.openInViewer()
 
 })()

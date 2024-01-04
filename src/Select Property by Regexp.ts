@@ -12,17 +12,8 @@ declare const aeq: any
 	const DEBUGGING = false
 	const KEY_NAME = "selectPropertyByString"
 
-	// // is the setting defined?
-	// if (!app.settings.haveSetting(SETTING_NAME, "string")) {
-	// 	// if not, define it
-	// 	app.settings.saveSetting(SETTING_NAME, "string", "Size")
-	// }
-
-	// const defaultString = app.settings.getSetting(SETTING_NAME, "string")
-
 	let defaultString = ianlib.getPref(KEY_NAME)
 
-	// const s = "Size"
 	app.beginUndoGroup("Select property by string");
 
 	const activeComp = app.project.activeItem as CompItem

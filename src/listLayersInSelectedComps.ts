@@ -21,13 +21,6 @@
 	}
 
 
-	// for (var c = 1; c <= thisComp.layers.length; c++) {
-	// 	let currentLayer = thisComp.layers[c]
-	// 	f.writeln(currentLayer.name)
-	// 	writeLn(currentLayer.name)
-
-	// }
-
 	f.close()
 
 

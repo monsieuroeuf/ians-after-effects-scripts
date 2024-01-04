@@ -1,6 +1,6 @@
 //@target aftereffects
 
-// Given a selection, select all the immediate children of those layers.
+// Given a selection, select the immediate children of those layers.
 
 (function () {
 	//@include "../lib/aequery.js"
