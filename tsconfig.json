@@ -4,6 +4,8 @@
     "target": "ES5",
     "noLib": true,
     "outDir": "dist",
+    // "sourceMap": true,
+    "inlineSourceMap": true,
     "types": [
       "types-for-adobe/AfterEffects/23.0"
     ]
