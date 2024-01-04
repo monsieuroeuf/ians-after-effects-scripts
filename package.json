@@ -5,10 +5,9 @@
 	"main": "index.js",
 	"dependencies": {
 		"aequery": "^0.7.1",
-		"types-for-adobe": "github:docsforadobe/Types-for-Adobe"
+		"types-for-adobe": "github:monsieuroeuf/Types-for-Adobe"
 	},
 	"devDependencies": {
-		"@types/node": "^20.10.6"
 	},
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1",

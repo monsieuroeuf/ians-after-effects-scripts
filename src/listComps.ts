@@ -1,7 +1,7 @@
 //@target aftereffects
 
-// dumps a list of all the comps in the project to a JSON file for use with
-// "fuzzyFinder"
+// Dumps a list of all the comps in the project to a JSON file for use with
+// "fuzzyFinder". 
 
 declare var JSON: any;
 declare var LISTCOMPS: any
@@ -14,54 +14,44 @@ if (typeof LISTCOMPS !== "object") {
 (function () {
 	//@include "../lib/aequery.js"
 	//@include "../lib/json2.js"
-	if (typeof LISTCOMPS.update !== "function") {
-		LISTCOMPS.update = function () {
-			// app.beginUndoGroup("List comps");
+	//@include "./ianlib.js"
 
-			// const fname = app.project.file?.displayName
-			// const DEST = `/Users/ian/tmp/ae/${fname}.comps.txt`
-			const DEST = `/Users/ian/tmp/ae/comps.out.txt`
+	const DEBUGGING = true
 
-			const f = new File(DEST)
-			f.lineFeed = "Unix"
+	const writeFuzzyJSON = function () {
+		const fuzzyFile = ianlib.getFuzzyCompsFile()
 
-			f.open("w")
+		fuzzyFile.lineFeed = "Unix"
+		fuzzyFile.open("w")
 
-			let allComps = aeq.getCompositions()
+		let allComps = aeq.getCompositions()
 
-			let results = []
+		let results = []
 
-			for (var c = 0; c < allComps.length; c++) {
-				let obj: Record<string, any> = {}
+		// make an array of objects with the name and id of each comp
+		for (var c = 0; c < allComps.length; c++) {
+			let obj: Record<string, any> = {}
 
-				var current = allComps[c] as CompItem
-				writeLn(current.name.toString())
-				obj.name = current.name
-				obj.id = current.id
-				results.push(obj)
+			var current = allComps[c] as CompItem
+			obj.name = current.name
+			obj.id = current.id
+			results.push(obj)
+		}
 
-			}
+		// pretty print the JSON
+		fuzzyFile.write(JSON.stringify(results, null, "\t"))
+		fuzzyFile.close()
+	}
 
-			f.write(JSON.stringify(results, null, "\t"))
-			f.close()
-
-			// let thisComp = app.project.activeItem as CompItem
-
-			// openInViewer
-
-			// for (var c = 1; c <= thisComp.layers.length; c++) {
-			// 	let currentLayer = thisComp.layers[c]
-			// 	f.writeln(currentLayer.name)
-			// 	writeLn(currentLayer.name)
-
-			// }
-
-			// f.close()
-
-
+	if (DEBUGGING) {
+		// if debugging, set the update evey time
+		LISTCOMPS.update = writeFuzzyJSON
+	} else {
+		// if this is the first time we've run this script, set the update function
+		if (typeof LISTCOMPS.update !== "function") {
+			LISTCOMPS.update = writeFuzzyJSON
 		}
 	}
 
 })();
-
 LISTCOMPS.update()
