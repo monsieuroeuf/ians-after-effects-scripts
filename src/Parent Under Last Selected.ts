@@ -5,8 +5,6 @@
  * Parents the selected layers to the last selected layer, while trying to keep
  * the hierarchy intact.
  * 
- * @category Layer
- * @function lastSelectedIsParent
  */
 
 (function lastSelectedIsParent() {

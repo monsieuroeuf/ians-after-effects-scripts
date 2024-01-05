@@ -1,6 +1,6 @@
 //@target aftereffects
 
-(function () {
+(function listLayersInSelectedComps() {
 	//@include "../lib/aequery.js"
 
 	const DEST = '/Users/ian/tmp/ae/layers.out.txt'

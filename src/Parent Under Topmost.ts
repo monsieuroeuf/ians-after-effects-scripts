@@ -5,9 +5,6 @@
  * Parents the selected layers to the topmost layer, while trying to keep any
  * existing hierarchy intact.
  * 
- * @category Layer
- * @function parentUnderTopmost
- * 
  */
 
 (function parentUnderTopmost() {

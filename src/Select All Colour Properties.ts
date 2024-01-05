@@ -4,7 +4,7 @@
  * Select all the color properties on the selected layers.
  */
 
-(function selectAllColourProperties () {
+(function selectAllColourProperties() {
 
 	//@include "../lib/aequery.js"
 	app.beginUndoGroup("Select all the color props")

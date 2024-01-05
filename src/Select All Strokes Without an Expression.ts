@@ -2,7 +2,7 @@
 
 // Not sure what the original goal was, but I like the use of aeq
 
-(function () {
+(function selectAllStrokesWithoutExpressions() {
 	//@include "../lib/aequery.js"
 
 	app.beginUndoGroup("Select all strokes without an expression")

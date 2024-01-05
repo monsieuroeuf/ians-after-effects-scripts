@@ -2,7 +2,7 @@
 
 // make a shape layer with a rect the size of THIS comp
 
-(function () {
+(function rectangleAroundComp() {
 	app.beginUndoGroup("CompRect");
 
 	let comp = app.project.activeItem as CompItem;

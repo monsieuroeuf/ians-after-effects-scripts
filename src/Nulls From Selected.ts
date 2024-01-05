@@ -4,7 +4,6 @@
  * Creates nulls at the same position as the selected layers, and parents them
  * to each. Also moves each null to be directly above the layer it's parented
  * to, and inherits its label.
- * @function nullsFromSelected
 */
 
 (function nullsFromSelected() {

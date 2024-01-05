@@ -5,7 +5,7 @@
  * the selected layers.
  */
 
-(function () {
+(function selectRelated() {
 	//@include "../lib/aequery.js"
 	app.beginUndoGroup("Select related")
 

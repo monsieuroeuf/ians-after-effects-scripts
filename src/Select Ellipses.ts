@@ -3,7 +3,7 @@
 // selects all the layers with an ellipse in 'em
 
 
-(function () {
+(function selectEllipses() {
 	//@include "../lib/aequery.js"
 	app.beginUndoGroup("Select ellipses")
 

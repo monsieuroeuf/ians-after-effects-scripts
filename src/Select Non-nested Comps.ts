@@ -2,7 +2,7 @@
 
 // Select all comps that are not nested in any other comp
 
-(function () {
+(function selectNonNestedComps() {
 	//@include "../lib/aequery.js"
 	app.beginUndoGroup("Select Non-nested Comps")
 

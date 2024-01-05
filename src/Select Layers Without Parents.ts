@@ -1,6 +1,6 @@
 ﻿//@target aftereffects
 
-(function () {
+(function selectLayersWithoutParents() {
 
 	//@include "../lib/aequery.js"
 	app.beginUndoGroup("Select layers without parents")

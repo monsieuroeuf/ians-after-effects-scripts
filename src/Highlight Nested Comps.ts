@@ -3,7 +3,7 @@
 // First, deselect everything in the project. Then, select every comp that is
 // used in another comp.
 
-(function () {
+(function highlightNestedComps() {
 	//@include "../lib/aequery.js"
 	app.beginUndoGroup("Highlight Nested Comps");
 

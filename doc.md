@@ -16,15 +16,14 @@
 *   [nullsFromSelected][12]
 *   [lastSelectedIsParent][13]
 *   [parentUnderTopmost][14]
-*   [beginUndoGroup][15]
-    *   [Parameters][16]
-*   [beginUndoGroup][17]
-*   [quickLayerRenamer][18]
-*   [selectAllPathProps][19]
-*   [selectIdenticalProperties][20]
-*   [PropertyBank][21]
-*   [useAEQ][22]
-*   [defaultMatch][23]
+*   [quickCompRenamer][15]
+*   [quickLayerRenamer][16]
+*   [selectAllPathProps][17]
+*   [selectIdenticalProperties][18]
+*   [PropertyBank][19]
+*   [beginUndoGroup][20]
+*   [useAEQ][21]
+*   [selectStrokesAndFills][22]
 
 ## embiggenSelectedComps
 
@@ -88,22 +87,9 @@ the hierarchy intact.
 Parents the selected layers to the topmost layer, while trying to keep any
 existing hierarchy intact.
 
-## beginUndoGroup
-
-Quick Comp Renamer
+## quickCompRenamer
 
 Adds a prefix to the name of each selected comp.
-
-### Parameters
-
-*   `s` **[string][24]** The prefix to add to the comp name. (optional, default `""`)
-
-Returns **void**&#x20;
-
-## beginUndoGroup
-
-Uses aequery's Layer.relatedLayers() to select all parents and children of
-the selected layers.
 
 ## quickLayerRenamer
 
@@ -119,9 +105,7 @@ Selects every "path" property on selected layers
 Selects the same property on all layers, respecting the hierarchy.
 For example, if you've selected a property that looks like this:
 
-```javascript
 property("Contents").property("Rectangle 2").property("Contents").property("Stroke 1").property("Stroke Width")
-```
 
 … the script will select the same property on other layers, but only if it
 matches the hierarchy exactly. Very handy when you've duplicated a shape
@@ -129,13 +113,16 @@ layer and want to update its colour or stroke etc.
 
 ## PropertyBank
 
+## beginUndoGroup
+
+Uses aequery's Layer.relatedLayers() to select all parents and children of
+the selected layers.
+
 ## useAEQ
 
 Selects all the "Stroke Width" properties on selected layers.
 
-## defaultMatch
-
-Select Strokes and Fills
+## selectStrokesAndFills
 
 Selects all strokes and fills on selected layers using the extremely nifty
 aeq function. It'll descend into groups and select strokes 'n' fills at any
@@ -172,22 +159,18 @@ it'll select only strokes. If you hold shift, it'll select only fills.
 
 [14]: #parentundertopmost
 
-[15]: #beginundogroup
+[15]: #quickcomprenamer
 
-[16]: #parameters-2
+[16]: #quicklayerrenamer
 
-[17]: #beginundogroup-1
+[17]: #selectallpathprops
 
-[18]: #quicklayerrenamer
+[18]: #selectidenticalproperties
 
-[19]: #selectallpathprops
+[19]: #propertybank
 
-[20]: #selectidenticalproperties
+[20]: #beginundogroup
 
-[21]: #propertybank
+[21]: #useaeq
 
-[22]: #useaeq
-
-[23]: #defaultmatch
-
-[24]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String
+[22]: #selectstrokesandfills

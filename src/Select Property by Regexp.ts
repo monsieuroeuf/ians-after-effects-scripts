@@ -5,7 +5,7 @@
 
 declare const aeq: any
 
-(function () {
+(function selectPropertiesByRegexp() {
 	//@include "../lib/aequery.js"
 	//@include "./ianlib.js"
 

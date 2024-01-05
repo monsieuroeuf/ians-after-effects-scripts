@@ -2,7 +2,7 @@
 
 // Given a selection, select the immediate children of those layers.
 
-(function () {
+(function selectImmediateChildren() {
 	//@include "../lib/aequery.js"
 	app.beginUndoGroup("Select immediate children")
 
