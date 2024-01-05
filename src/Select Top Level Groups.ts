@@ -18,7 +18,7 @@
 
 	for (let currentLayer of layers) {
 		// check that the currentLayer.property("Contents") exists
-		// if it doesn't, skip to the next layer
+		// if it doesn't, deselect it and skip to the next layer
 		if (!currentLayer.property("Contents")) {
 			currentLayer.selected = false
 			continue

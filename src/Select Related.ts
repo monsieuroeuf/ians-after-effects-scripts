@@ -1,12 +1,16 @@
 ﻿//@target aftereffects
 
 (function () {
-	//@include "../aequery.js"
-	app.beginUndoGroup("Select relatives");
-	var x = aeq.getSelectedLayers();
-	x.forEach((selectedLayer: Layer) => {
-		var theKids = aeq.layer.relatedLayers(selectedLayer);
-		theKids.forEach(function (kid) {
+	//@include "../lib/aequery.js"
+	app.beginUndoGroup("Select related");
+
+	const selectedLayers = aeq.getSelectedLayers();
+
+	selectedLayers.forEach((currentLayer: Layer) => {
+		// alert(currentLayer.name)
+		var allRelatives = aeq.layer.relatedLayers(currentLayer);
+		// alert(allRelatives.length)
+		allRelatives.forEach((kid: Layer) => {
 			kid.selected = true;
 		});
 	})
