@@ -1,14 +1,17 @@
 ﻿//@target aftereffects
 
-// Operates on selected layers in current comp.
-// Simplify shape layers by selecting all the top-level groups … which then you can group.
-// If there are no top-level groups on a layer, it will deselect it and continue looking.
+/**
+ *  
+ *  Operates on selected layers in current comp.  Simplify shape layers by
+ *  selecting all the top-level groups … which then you can group. If there are
+ *  no top-level groups on a layer, it will deselect it and continue looking.
+ * 
+ *  NOTE: this seems to run faster if you select all the layers? Rather than
+ *  just one. Weird
+ */
 
-// NOTE: this seems to run faster if you select all the layers? Rather than just one. Weird
 
-
-(function () {
-
+(function selectTopLevelGroups() {
 	//@include "../lib/aequery.js"
 	clearOutput()
 

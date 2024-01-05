@@ -1,7 +1,6 @@
 ﻿//@target aftereffects
 
 /**
- * Select Strokes and Fills
  * 
  * Selects all strokes and fills on selected layers using the extremely nifty
  * aeq function. It'll descend into groups and select strokes 'n' fills at any
@@ -11,11 +10,12 @@
  * it'll select only strokes. If you hold shift, it'll select only fills.
  * 
  */
-(function () {
+
+(function selectStrokesAndFills() {
 	//@include "../lib/aequery.js"
 	const defaultMatch = "ADBE Vector Graphic - (Stroke|Fill)"
-	const strokeOnly   = "ADBE Vector Graphic - Stroke"
-	const fillOnly     = "ADBE Vector Graphic - Fill"
+	const strokeOnly = "ADBE Vector Graphic - Stroke"
+	const fillOnly = "ADBE Vector Graphic - Fill"
 
 	let searchMatch = defaultMatch
 

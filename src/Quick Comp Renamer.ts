@@ -1,17 +1,11 @@
 //@target aftereffects
 
 /**
- * Quick Comp Renamer
- * 
  * Adds a prefix to the name of each selected comp.
  * 
- * @category comps
- * @param {string} [s=""] - The prefix to add to the comp name.
- * @returns {void}
- * 
- */ 
+ */
 
-(function () {
+(function quickCompRenamer() {
 	//@include "../lib/aequery.js"
 	//@include "./ianlib.js"
 
