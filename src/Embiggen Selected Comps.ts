@@ -1,10 +1,14 @@
 //@target aftereffects
 
-// quick and rough way to embiggen a few comps
+/**
+ * 
+ * Quick and rough way to embiggen a few comps
+ * @function embiggenSelectedComps
+ */
 
-(function () {
+(function embiggenSelectedComps() {
 
-	app.beginUndoGroup("Embiggen selected");
+	app.beginUndoGroup("Embiggen selected")
 
 	const selectedComps = app.project.selection
 
@@ -44,4 +48,4 @@
 		currentComp.time = currentCompOriginalTime
 
 	}
-})();
+})()

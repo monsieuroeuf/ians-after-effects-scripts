@@ -1,21 +1,20 @@
 //@target aftereffects
 
 /**
- * Parent Under Topmost
  * 
  * Parents the selected layers to the topmost layer, while trying to keep any
  * existing hierarchy intact.
  * 
  * @category Layer
+ * @function parentUnderTopmost
  * 
  */
 
-
-(function () {
+(function parentUnderTopmost() {
 	//@include "../lib/aequery.js"
 	app.beginUndoGroup("Parent from topmost")
 
-	const activeComp     = app.project.activeItem as CompItem
+	const activeComp = app.project.activeItem as CompItem
 	const selectedLayers = activeComp.selectedLayers
 
 	// sort by index, then take the first one

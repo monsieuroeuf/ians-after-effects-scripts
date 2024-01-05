@@ -1,10 +1,13 @@
 //@target aftereffects
 
-// Creates nulls at the same position as the selected layers, and parents them
-// to each. Also moves each null to be directly above the layer it's parented
-// to, and inherits its label.
+/**
+ * Creates nulls at the same position as the selected layers, and parents them
+ * to each. Also moves each null to be directly above the layer it's parented
+ * to, and inherits its label.
+ * @function nullsFromSelected
+*/
 
-(function () {
+(function nullsFromSelected() {
 	//@include "../lib/aequery.js"
 	app.beginUndoGroup("Nulls from selected");
 
@@ -24,10 +27,10 @@
 
 		newNull.name = `NULL ${current.name}`
 
-		current.parent = newNull
 		newNull.moveBefore(current)
+		current.parent   = newNull
 		newNull.selected = true
-		newNull.label = current.label
+		newNull.label    = current.label
 	}
 
 	// select all the new nulls

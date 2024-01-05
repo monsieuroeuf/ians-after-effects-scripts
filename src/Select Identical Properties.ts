@@ -1,41 +1,42 @@
 ﻿//@target aftereffects
 
 /**
- * Select Same Properties
+ * Selects the same property on all layers, respecting the hierarchy.
+ * For example, if you've selected a property that looks like this:
  * 
+ * ```javascript
+ * property("Contents").property("Rectangle 2").property("Contents").property("Stroke 1").property("Stroke Width")
+ * ```
  * 
+ * … the script will select the same property on other layers, but only if it
+ * matches the hierarchy exactly. Very handy when you've duplicated a shape
+ * layer and want to update its colour or stroke etc.
+ *  @name Select Identical Properties
  */
 
-
-(function selectSameProperties() {
+(function selectIdenticalProperties() {
 	//@include "../lib/aequery.js"; 
 
-	/**
-	 * 
-	 * @param prop takes a property object
-	 * 
-	 */
 	class PropertyBank {
-		propAry: Array<PropertyBase>
+		propHierarchyAry: Array<PropertyBase>
 
 		// make a constructor
 		constructor(prop: Property) {
-			// properties 
-			this.propAry = new Array(prop)
+			this.propHierarchyAry = new Array(prop)
 		}
 
 		// methods
 		addProp = (prop: PropertyBase) => {
-			this.propAry.push(prop)
+			this.propHierarchyAry.push(prop)
 		}
 
 		toString = () => {
 			var result = ""
-			this.propAry.reverse()
-			aeq.forEach(this.propAry, function (item: Property) {
+			this.propHierarchyAry.reverse()
+			aeq.forEach(this.propHierarchyAry, function (item: Property) {
 				result += item.name + ", "
 			})
-			this.propAry.reverse()
+			this.propHierarchyAry.reverse()
 			return result
 		}
 
@@ -44,17 +45,11 @@
 			// I don't think I can use Array.map due to AE's old version of js?
 
 			var result = []
-			aeq.forEach(this.propAry, function (item: Property) {
+			aeq.forEach(this.propHierarchyAry, function (item: Property) {
 				// result.push("property(\"" + item.name + "\")")
 				result.push(`property("${item.name}")`)
 			})
 			return result.reverse().join(".")
-
-			// return this.propAry.reverse().map(function (item: Property) {
-			// 	return `property("${item.name}")`
-			// }).join(".")
-
-
 		}
 	}
 
@@ -81,21 +76,7 @@
 
 		// add to the master list
 		propertyBankAry.push(currentPropertyBank)
-		/*
-		if (aeq.property.type(prop) === "PROPERTY") { // ignore groups
-			$.writeln(prop.name)
-			aeq("prop[name='" + prop.name + "']", comp).forEach(function (prop) {
-				// use the aeq selector to grab all properties with the same name ...
-				prop.selected = true
-			})
-		}
-		*/
-
 	})
-
-	// aeq.forEach(propertyBankAry, function (item) {
-	// 	$.writeln(item.makePropertySpec())
-	// })
 
 	// select 'em all
 	aeq.forEach(aeq.getLayers(comp), (layer: Layer) => {

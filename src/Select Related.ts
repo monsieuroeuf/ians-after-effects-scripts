@@ -1,18 +1,21 @@
 ﻿//@target aftereffects
 
+/**
+ * Uses aequery's Layer.relatedLayers() to select all parents and children of
+ * the selected layers.
+ */
+
 (function () {
 	//@include "../lib/aequery.js"
-	app.beginUndoGroup("Select related");
+	app.beginUndoGroup("Select related")
 
-	const selectedLayers = aeq.getSelectedLayers();
+	const selectedLayers = aeq.getSelectedLayers()
 
 	selectedLayers.forEach((currentLayer: Layer) => {
-		// alert(currentLayer.name)
-		var allRelatives = aeq.layer.relatedLayers(currentLayer);
-		// alert(allRelatives.length)
-		allRelatives.forEach((kid: Layer) => {
-			kid.selected = true;
-		});
+		var allRelatives = aeq.layer.relatedLayers(currentLayer)
+		allRelatives.forEach((relation: Layer) => {
+			relation.selected = true
+		})
 	})
 
-})();
+})()
