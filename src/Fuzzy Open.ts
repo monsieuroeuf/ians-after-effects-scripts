@@ -11,11 +11,11 @@ declare var JSON: any;
 (function fuzzyOpen() {
 	//@include "../lib/aequery.js"
 	//@include "./listComps.js"
-	//@include "./ianlib.js"
+	//@include "./IanLib.js"
 
 	clearOutput()
 
-	const fuzzyFileToOpen = ianlib.getFuzzyOpenFile()
+	const fuzzyFileToOpen = IanLib.getFuzzyOpenFile()
 
 	// run the listComps script to create the file
 	if (!fuzzyFileToOpen.exists) LISTCOMPS.update()

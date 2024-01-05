@@ -8,12 +8,12 @@
 
 (function () {
 	//@include "../lib/aequery.js"
-	//@include "./ianlib.js"
+	//@include "./IanLib.js"
 
 	const DEBUGGING = false
 	const KEY_NAME = "selectPropertyByString"
 
-	let defaultString = ianlib.getPref(KEY_NAME)
+	let defaultString = IanLib.getPref(KEY_NAME)
 
 	app.beginUndoGroup("Select property by string");
 
@@ -23,7 +23,7 @@
 	let lookForString = prompt("what property name do you want to select?", defaultString)
 
 	// keep the value for next time
-	ianlib.setPref(KEY_NAME, lookForString)
+	IanLib.setPref(KEY_NAME, lookForString)
 
 	function ignoredPropertyGroups(prop: PropertyBase) {
 		// some properties are not selectable because they're hidden

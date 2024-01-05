@@ -17,12 +17,12 @@ if (typeof LISTCOMPS !== "object") {
 (function listComps() {
 	//@include "../lib/aequery.js"
 	//@include "../lib/json2.js"
-	//@include "./ianlib.js"
+	//@include "./IanLib.js"
 
 	const DEBUGGING = true
 
 	const writeFuzzyJSON = function () {
-		const fuzzyFile = ianlib.getFuzzyCompsFile()
+		const fuzzyFile = IanLib.getFuzzyCompsFile()
 
 		fuzzyFile.lineFeed = "Unix"
 		fuzzyFile.open("w")
