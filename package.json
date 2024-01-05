@@ -1,5 +1,5 @@
 {
-	"name": "kill",
+	"name": "ian-ae",
 	"version": "1.0.0",
 	"description": "",
 	"main": "index.js",
@@ -12,7 +12,8 @@
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1",
 		"build": "tsc -p .",
-		"watch": "tsc -p . --watch"
+		"watch": "tsc -p . --watch",
+		"clean": "rm -r ./dist && tsc -p ."
 	},
 	"keywords": [],
 	"author": "",
