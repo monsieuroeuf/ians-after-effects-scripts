@@ -1,13 +1,9 @@
 //@target aftereffects
 
-declare var JSON: any;
-
 /**
  * Reads a plain text file that contains a comp ID, and opens that comp.
- * @function fuzzyOpen
- * @requires aequery
- * @requires listComps
  */
+
 (function fuzzyOpen() {
 	//@include "../lib/aequery.js"
 	//@include "./listComps.js"
@@ -18,7 +14,7 @@ declare var JSON: any;
 	const fuzzyFileToOpen = IanLib.getFuzzyOpenFile()
 
 	// run the listComps script to create the file
-	if (!fuzzyFileToOpen.exists) LISTCOMPS.update()
+	if (!fuzzyFileToOpen.exists) FUZZYOPEN_LISTCOMPS.update()
 
 	fuzzyFileToOpen.open("r")
 	const compID = fuzzyFileToOpen.readln()

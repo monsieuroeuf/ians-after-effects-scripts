@@ -1,13 +1,14 @@
 //@target aftereffects
 
-// selects all the layers with an ellipse in 'em
+/**
+ * Selects all the layers with an ellipse in 'em
+ * 
+ * @todo make a speeder "non aeq()" version
+ */
 
-
-(function () {
+(function selectEllipses() {
 	//@include "../lib/aequery.js"
 	app.beginUndoGroup("Select ellipses")
-
-	let comp = app.project.activeItem as CompItem
 
 	let shapeLayers = aeq.getSelectedLayersOrAll().filter( (layer:Layer) => {
 		return aeq.isShapeLayer(layer)
@@ -23,5 +24,4 @@
 			}
 		}
 	}
-
 })()

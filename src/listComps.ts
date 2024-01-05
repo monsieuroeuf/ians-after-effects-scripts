@@ -1,17 +1,16 @@
 //@target aftereffects
 
-declare var JSON     : any;
-declare var LISTCOMPS: any
+declare var JSON               : any
+declare var FUZZYOPEN_LISTCOMPS: any
 
 // declare LISTCOMPS at the top level so that it's available to other scripts
-if (typeof LISTCOMPS !== "object") {
-	LISTCOMPS = {}
+if (typeof FUZZYOPEN_LISTCOMPS !== "object") {
+	FUZZYOPEN_LISTCOMPS = {}
 }
 
 /**
  * Dumps a list of all the comps in the project to a JSON file for use with
  * "fuzzyFinder". 
- * @function listComps
  */
 
 (function listComps() {
@@ -48,13 +47,13 @@ if (typeof LISTCOMPS !== "object") {
 
 	if (DEBUGGING) {
 		// if debugging, set the update evey time
-		LISTCOMPS.update = writeFuzzyJSON
+		FUZZYOPEN_LISTCOMPS.update = writeFuzzyJSON
 	} else {
 		// if this is the first time we've run this script, set the update function
-		if (typeof LISTCOMPS.update !== "function") {
-			LISTCOMPS.update = writeFuzzyJSON
+		if (typeof FUZZYOPEN_LISTCOMPS.update !== "function") {
+			FUZZYOPEN_LISTCOMPS.update = writeFuzzyJSON
 		}
 	}
 
 })();
-LISTCOMPS.update()
+FUZZYOPEN_LISTCOMPS.update()

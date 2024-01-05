@@ -1,16 +1,20 @@
 //@target aftereffects
 
-// make a shape layer with a rect the size of THIS comp
+/**
+ * Make a shape layer with a rect the size of THIS comp. Holding down the alt
+ * key will add an expression to the size, so that it always matches the comp
+ * size. Default is blue, but the auto-sizing version is yellow. For some reason.
+ */
 
-(function () {
-	app.beginUndoGroup("CompRect");
+(function rectangleAroundComp() {
+	app.beginUndoGroup("CompRect")
 
-	let comp = app.project.activeItem as CompItem;
+	let comp = app.project.activeItem as CompItem
 
 	let newShape = comp.layers.addShape()
 	// let shapeGroup = newShape.property("Contents").addProperty("ADBE Vector Group")
 	// let rect = shapeGroup.property("Contents").addProperty("ADBE Vector Shape - Rect") as Property<Shape>
-	let shapeGroup = newShape.property("Contents") as PropertyGroup;
+	let shapeGroup = newShape.property("Contents") as PropertyGroup
 	let rect = shapeGroup.addProperty("ADBE Vector Shape - Rect") 
 
 	const layerColours = {
@@ -37,4 +41,4 @@
 
 	newShape.name = layerName
 	newShape.moveToEnd()
-})();
+})()

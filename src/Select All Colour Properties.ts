@@ -1,6 +1,12 @@
 ﻿//@target aftereffects
 
-(function () {
+/**
+ * Selects all the "colour" properties in the selected layers.
+ * 
+ * @todo make a speedier version, i.e. not using css-style selector
+ */
+
+(function selectAllColourProperties() {
 
 	//@include "../lib/aequery.js"
 	app.beginUndoGroup("Select all the color props")

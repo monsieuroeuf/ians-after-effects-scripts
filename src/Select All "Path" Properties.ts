@@ -1,8 +1,7 @@
 ﻿//@target aftereffects
 
 /**
- * Selects every "path" property on selected layers
- * @function selectAllPathProps
+ * Selects every "path" property on selected layers.
  */
 
 (function selectAllPathProps() {
@@ -24,7 +23,6 @@
 	function nativeVersion() {
 		const comp = app.project.activeItem as CompItem
 		const selectedLayers = comp.selectedLayers
-
 		
 		for (let i = 0; i < selectedLayers.length; i++) {
 			let hasPathFlag = false
@@ -38,7 +36,6 @@
 			})
 			// deselect layer if no path property
 			if (!hasPathFlag) currentLayer.selected = false
-
 		}
 	}
 

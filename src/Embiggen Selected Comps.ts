@@ -3,7 +3,6 @@
 /**
  * 
  * Quick and rough way to embiggen a few comps
- * @function embiggenSelectedComps
  */
 
 (function embiggenSelectedComps() {

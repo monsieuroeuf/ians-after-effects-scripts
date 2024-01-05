@@ -1,15 +1,19 @@
 //@target aftereffects
 
-// First, deselect everything in the project. Then, select every comp that is
-// used in another comp.
+/**
+ * 
+ * First, deselect everything in the project. Then, select every comp that's
+ * nested in another comp.
+ * 
+ */
 
-(function () {
+(function highlightNestedComps() {
 	//@include "../lib/aequery.js"
 	app.beginUndoGroup("Highlight Nested Comps");
 
 	// const selectedCompAry = aeq.getComps().filter((comp: CompItem) => comp.selected)
 	const allCompAry = aeq.getComps()
-	
+
 	// deselect everything
 	for (let item of app.project.selection) {
 		item.selected = false
