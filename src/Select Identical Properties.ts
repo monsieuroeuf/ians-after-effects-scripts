@@ -11,7 +11,6 @@
  * … the script will select the same property on other layers, but only if it
  * matches the hierarchy exactly. Very handy when you've duplicated a shape
  * layer and want to update its colour or stroke etc.
- *  @name Select Identical Properties
  */
 
 (function selectIdenticalProperties() {
