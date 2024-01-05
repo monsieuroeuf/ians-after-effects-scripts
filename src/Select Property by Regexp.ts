@@ -1,9 +1,10 @@
 //@target aftereffects
 
-// Select all properties that match a regex. We'll ignore properties that
-// are usually hidden, like "Layer Styles" and "Material Options".
+/**
+ * Select all properties that match a regex. We'll ignore properties that are
+ * usually hidden, like "Layer Styles" and "Material Options".
+ */
 
-declare const aeq: any
 
 (function () {
 	//@include "../lib/aequery.js"
