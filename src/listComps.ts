@@ -1,9 +1,6 @@
 //@target aftereffects
 
-// Dumps a list of all the comps in the project to a JSON file for use with
-// "fuzzyFinder". 
-
-declare var JSON: any;
+declare var JSON     : any;
 declare var LISTCOMPS: any
 
 // declare LISTCOMPS at the top level so that it's available to other scripts
@@ -11,7 +8,13 @@ if (typeof LISTCOMPS !== "object") {
 	LISTCOMPS = {}
 }
 
-(function () {
+/**
+ * Dumps a list of all the comps in the project to a JSON file for use with
+ * "fuzzyFinder". 
+ * @function listComps
+ */
+
+(function listComps() {
 	//@include "../lib/aequery.js"
 	//@include "../lib/json2.js"
 	//@include "./ianlib.js"

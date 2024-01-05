@@ -1,7 +1,11 @@
 //@target aftereffects
 
+/**
+ * Dumps a list of layers in the current comp to a plain text file.
+ * @function listLayers
+ */
 
-(function () {
+(function listLayers () {
 	//@include "../lib/aequery.js"
 	app.beginUndoGroup("List comps");
 

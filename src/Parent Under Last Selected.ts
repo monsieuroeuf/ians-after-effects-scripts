@@ -1,15 +1,15 @@
 //@target aftereffects
 
 /**
- * Last Selected is Parent
  * 
- * Parents the selected layers to the last selected layer.
- * Tries to keep the hierarchy intact.
+ * Parents the selected layers to the last selected layer, while trying to keep
+ * the hierarchy intact.
  * 
  * @category Layer
+ * @function lastSelectedIsParent
  */
 
-(function () {
+(function lastSelectedIsParent() {
 	//@include "../lib/aequery.js"
 	app.beginUndoGroup("Last Selected is Parent")
 
@@ -24,7 +24,7 @@
 
 	// re-parent 
 	selectedLayers.forEach((currentLayer: Layer) => {
-		if (currentLayer.parent)  {
+		if (currentLayer.parent) {
 			// if currentLayer parent is one of the selected layers, then leave it alone
 			if (selectedLayers.indexOf(currentLayer.parent) !== -1) return
 		}

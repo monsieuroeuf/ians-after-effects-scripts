@@ -2,7 +2,13 @@
 
 declare var JSON: any;
 
-(function () {
+/**
+ * Reads a plain text file that contains a comp ID, and opens that comp.
+ * @function fuzzyOpen
+ * @requires aequery
+ * @requires listComps
+ */
+(function fuzzyOpen() {
 	//@include "../lib/aequery.js"
 	//@include "./listComps.js"
 	//@include "./ianlib.js"

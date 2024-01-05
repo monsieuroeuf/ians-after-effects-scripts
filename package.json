@@ -4,8 +4,8 @@
 	"description": "",
 	"main": "index.js",
 	"dependencies": {
-		"aequery": "^0.7.1",
-		"types-for-adobe": "github:monsieuroeuf/Types-for-Adobe"
+		"aequery": "github:monsieuroeuf/aequery",
+		"types-for-adobe": "github:docsforadobe/Types-for-Adobe"
 	},
 	"devDependencies": {
 	},
