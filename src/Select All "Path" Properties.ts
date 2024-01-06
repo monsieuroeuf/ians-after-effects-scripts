@@ -22,7 +22,7 @@
 	// this version seems way faster
 	function nativeVersion() {
 		const comp = app.project.activeItem as CompItem
-		const selectedLayers = comp.selectedLayers
+		const selectedLayers = aeq.getSelectedLayersOrAll(comp)
 		
 		for (let i = 0; i < selectedLayers.length; i++) {
 			let hasPathFlag = false
