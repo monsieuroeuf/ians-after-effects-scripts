@@ -1,9 +1,12 @@
 ﻿//@target aftereffects
 
-// With each selected property, select keys to the right of the current time.
-// Deselect keys to the left.
+/**
+ * With each selected property, select keys to the right of the current time.
+ * Deselect keys to the left.
+ */
 
-(function () {
+
+(function selectKeysToTheRight() {
 	//@include "../lib/aequery.js"
 
 	const comp        = aeq.getActiveComposition()

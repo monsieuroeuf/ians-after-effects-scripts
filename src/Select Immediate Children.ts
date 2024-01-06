@@ -1,8 +1,11 @@
 //@target aftereffects
 
-// Given a selection, select the immediate children of those layers.
+/**
+ * Given a selection, select only the immediate children of those layers (not
+ * the whole tree).
+ */
 
-(function () {
+(function selectImmediateChildren() {
 	//@include "../lib/aequery.js"
 	app.beginUndoGroup("Select immediate children")
 
