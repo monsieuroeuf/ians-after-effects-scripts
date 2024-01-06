@@ -4,7 +4,7 @@
  * Selects all the "Stroke Width" properties on selected layers.
  */
 
-(function () {
+(function selectStrokeWidths () {
 	//@include "../lib/aequery.js"
 	function useAEQ() {
 		// I love using the CSS style selectors, but it's slow

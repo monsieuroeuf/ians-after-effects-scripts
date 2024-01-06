@@ -11,15 +11,15 @@
 // ensure inOrOut is either "inPoint" or "outPoint"
 type InOrOut = "inPoint" | "outPoint"
 
-(function () {
+(function selectLayersAfterNow() {
 	//@include "../lib/aequery.js"
 	app.beginUndoGroup("Select layers after now")
 
 	const thisComp = aeq.getActiveComp()
-	const now      = thisComp.time
+	const now = thisComp.time
 
 	// defaults
-	let layerSelect      = true
+	let layerSelect = true
 	let inOrOut: InOrOut = "inPoint"
 
 	if (ScriptUI.environment.keyboardState.altKey) {

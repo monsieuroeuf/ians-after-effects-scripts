@@ -5,7 +5,6 @@
  * Deselect keys to the left.
  */
 
-
 (function selectKeysToTheRight() {
 	//@include "../lib/aequery.js"
 

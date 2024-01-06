@@ -1,11 +1,14 @@
 //@target aftereffects
 
-// this adds default masks to each selected layer, then keyframes the mask shape
-// twice: *now*, and KEYFRAME_DISTANCE from now. Plus position property. Then
-// you can use the "pan behind" tool to move the layer, creating a little
-// self-contained reveal. Neat!
+/**
+ * 
+ * This adds default masks to each selected layer, then keyframes the mask shape
+ * twice: *now*, and KEYFRAME_DISTANCE from now. Plus position property. Then you
+ * can use the "pan behind" tool to move the layer, creating a little
+ * self-contained reveal. Neat!
+ */
 
-(function () {
+(function setupMaskAnimation() {
 	// the time between keyframes in seconds
 	const KEYFRAME_DISTANCE = 1;
 

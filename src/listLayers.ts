@@ -2,7 +2,6 @@
 
 /**
  * Dumps a list of layers in the current comp to a plain text file.
- * @function listLayers
  */
 
 (function listLayers() {

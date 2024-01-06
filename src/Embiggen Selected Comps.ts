@@ -1,7 +1,6 @@
 //@target aftereffects
 
 /**
- * 
  * Quick and rough way to embiggen a few comps
  */
 

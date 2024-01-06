@@ -6,7 +6,7 @@
  */
 
 
-(function () {
+(function selectPropertiesByRegexp() {
 	//@include "../lib/aequery.js"
 	//@include "./IanLib.js"
 
