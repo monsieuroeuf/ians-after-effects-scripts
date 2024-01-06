@@ -2,7 +2,7 @@
 
 /**
  * Eases alternate keyframes on selected properties.
- * A work in progress :)
+ * Part experiment, part work-in-progress.
  */
 
 (function easeAlternateKeyframes() {
@@ -37,19 +37,12 @@
 		var smooth = new KeyframeEase(0.1, 60)
 		var sharp = new KeyframeEase(0.0, 0.1)
 
-		//var myPositionProperty = app.project.item(1).layer(1).property("Position") myPositionProperty.setTemporalEaseAtKey(2, [easeIn], [easeOut])
-
-
 		for (var c = 1; c <= prop.numKeys; c++) {
 			if (c % 2 == 0) {
-				//easeIn  = KeyframeInterpolationType.BEZIER
-				//easeOut = KeyframeInterpolationType.LINEAR
-				easeIn = smooth
+				easeIn  = smooth
 				easeOut = sharp
 			} else {
-				//easeIn  = KeyframeInterpolationType.LINEAR
-				//easeOut = KeyframeInterpolationType.BEZIER
-				easeIn = sharp
+				easeIn  = sharp
 				easeOut = smooth
 			}
 			prop.setTemporalEaseAtKey(c, [easeIn], [easeOut])
@@ -58,11 +51,9 @@
 
 	app.beginUndoGroup("Ease alternate keyframes")
 
-	var selectedProperties = app.project.activeItem.selectedProperties
-	//$.writeln(selectedProperties[0].name)
+	var selectedProperties = aeq.getSelectedProperties()
 
-	for (var i = 0; i < selectedProperties.length; i++) {
-		var current = selectedProperties[i]
+	for (let current of selectedProperties) {
 		easeEmKeys(current)
 	}
 
