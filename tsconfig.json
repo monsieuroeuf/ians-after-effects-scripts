@@ -5,7 +5,7 @@
     "noLib": true,
     "outDir": "dist",
     // "sourceMap": true,
-    "inlineSourceMap": true,
+    // "inlineSourceMap": true,
     "types": [
       "types-for-adobe/AfterEffects/23.0"
     ]
