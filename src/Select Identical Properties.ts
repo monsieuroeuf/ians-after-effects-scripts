@@ -4,7 +4,9 @@
  * Selects the same property on all layers, respecting the hierarchy.
  * For example, if you've selected a property that looks like this:
  * 
+ * ```javascript
  * property("Contents").property("Rectangle 2").property("Contents").property("Stroke 1").property("Stroke Width")
+ * ```
  * 
  * … the script will select the same property on other layers, but only if it
  * matches the hierarchy exactly. Very handy when you've duplicated a shape

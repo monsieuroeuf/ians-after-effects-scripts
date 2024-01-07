@@ -1,5 +1,5 @@
 {
-	"name": "ian-ae",
+	"name": "ian-ae-scripts",
 	"version": "1.0.0",
 	"description": "",
 	"main": "index.js",
@@ -13,7 +13,8 @@
 		"test": "echo \"Error: no test specified\" && exit 1",
 		"build": "tsc -p .",
 		"watch": "tsc -p . --watch",
-		"clean": "rm -r ./dist && tsc -p ."
+		"clean": "rm -r ./dist && tsc -p .",
+		"docs": "documentation build dist/*js -f md -o readme.md"
 	},
 	"keywords": [],
 	"author": "",
