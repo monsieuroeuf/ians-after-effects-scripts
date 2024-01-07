@@ -23,4 +23,12 @@
 		],
 		"description": "Include aescripts"
 	},
+	 "Target AE": {
+	  "scope": "javascript,typescript",
+	  "prefix": "tar",
+	  "body": [
+		"//@target aftereffects"
+	  ],
+	  "description": "Target ae"
+	},
 }

@@ -8,12 +8,14 @@ declare const _: any
  * the version then I append the version. For example if I had 74 versions of
  * the 01-cool-intro comp:
  *
+ * ```
  * 01-cool-intro-01
  * 01-cool-intro-02
  * ...
  * 01-cool-intro-74
+ * ```
  * 
- * … this script would select 01-cool-intro-74.
+ * … this script would select `01-cool-intro-74`.
  * 
  * This script descends into all folders and subfolders, and selects the highest
  * version of each comp.
