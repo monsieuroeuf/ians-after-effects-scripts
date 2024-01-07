@@ -4,8 +4,6 @@
  * Select some items in the project panel (comps, folders, etc) and this script
  * will collect them into a new folder with a witty and clever name of your
  * choosing.
- * 
- * @todo change folder name if holding down key
  */
 
 (function collectSelectionIntoFolder() {

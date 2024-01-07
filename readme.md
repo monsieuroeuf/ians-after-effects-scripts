@@ -3,40 +3,42 @@
 ### Table of Contents
 
 *   [allCompsToSameTime][1]
-*   [easeAlternateKeyframes][2]
-*   [embiggenSelectedComps][3]
-*   [fuzzyOpen][4]
-*   [highlightLatestComps][5]
-*   [highlightNestedComps][6]
-*   [hyphenate][7]
-*   [IanLib][8]
-*   [listComps][9]
-*   [listLayers][10]
-*   [nullsFromSelected][11]
-*   [lastSelectedIsParent][12]
-*   [parentUnderTopmost][13]
-*   [projectSelectionIntoFolder][14]
-*   [quickCompPrefixer][15]
-*   [quickLayerRenamer][16]
-*   [rectangleAroundComp][17]
-*   [selectAllPathProps][18]
-*   [selectAllColourProperties][19]
-*   [selectStrokesWithoutExpression][20]
-*   [selectDescendants][21]
-*   [selectEllipses][22]
-*   [selectIdenticalProperties][23]
-*   [PropertyBank][24]
-*   [selectImmediateChildren][25]
-*   [selectKeysToTheRight][26]
-*   [selectLayersWithoutParents][27]
-*   [selectNonNestedComps][28]
-*   [selectPropertiesByRegexp][29]
-*   [selectRelated][30]
-*   [selectStrokeColours][31]
-*   [selectStrokeWidths][32]
-*   [selectStrokesAndFills][33]
-*   [selectTopLevelGroups][34]
-*   [setupMaskAnimation][35]
+*   [applyPresetAtBeginningOfSelectedLayers][2]
+*   [collectSelectionIntoFolder][3]
+*   [easeAlternateKeyframes][4]
+*   [embiggenSelectedComps][5]
+*   [fuzzyOpen][6]
+*   [highlightLatestComps][7]
+*   [highlightNestedComps][8]
+*   [hyphenate][9]
+*   [IanLib][10]
+*   [layerStartTimesToInPoints][11]
+*   [listComps][12]
+*   [listLayers][13]
+*   [nullsFromSelected][14]
+*   [lastSelectedIsParent][15]
+*   [parentUnderTopmost][16]
+*   [quickCompPrefixer][17]
+*   [quickLayerRenamer][18]
+*   [rectangleAroundComp][19]
+*   [selectAllPathProps][20]
+*   [selectAllColourProperties][21]
+*   [selectStrokesWithoutExpression][22]
+*   [selectDescendants][23]
+*   [selectEllipses][24]
+*   [selectIdenticalProperties][25]
+*   [PropertyBank][26]
+*   [selectImmediateChildren][27]
+*   [selectKeysToTheRight][28]
+*   [selectLayersWithoutParents][29]
+*   [selectNonNestedComps][30]
+*   [selectPropertiesByRegexp][31]
+*   [selectRelated][32]
+*   [selectStrokeColours][33]
+*   [selectStrokeWidths][34]
+*   [selectStrokesAndFills][35]
+*   [selectTopLevelGroups][36]
+*   [setupMaskAnimation][37]
 
 ## allCompsToSameTime
 
@@ -46,10 +48,26 @@ titles after they've built, and ensure everything looks OK.
 Also works with folders, just select top level folders and it will look in
 them (and their subfolders) for comps – thanks aequery!
 
+## applyPresetAtBeginningOfSelectedLayers
+
+If you apply a preset that contains keyframes, it will apply them at the
+current time. If you want to apply to several layers that have different in
+points, you have to do it manually. This will quickly apply a preset at the
+beginning of each selected layer.
+
+Select the layers you want to apply the preset to, run the script, and choose
+the preset using the file dialog.
+
+## collectSelectionIntoFolder
+
+Select some items in the project panel (comps, folders, etc) and this script
+will collect them into a new folder with a witty and clever name of your
+choosing.
+
 ## easeAlternateKeyframes
 
 Eases alternate keyframes on selected properties.
-A work in progress :)
+Part experiment, part work-in-progress.
 
 ## embiggenSelectedComps
 
@@ -66,12 +84,12 @@ unique top-level comp starts with a two digit number, and if I need to bump
 the version then I append the version. For example if I had 74 versions of
 the 01-cool-intro comp:
 
-01-cool-intro-01
-01-cool-intro-02
-...
-01-cool-intro-74
+    01-cool-intro-01
+    01-cool-intro-02
+    ...
+    01-cool-intro-74
 
-… this script would select 01-cool-intro-74.
+… this script would select `01-cool-intro-74`.
 
 This script descends into all folders and subfolders, and selects the highest
 version of each comp.
@@ -91,6 +109,19 @@ nested in another comp.
 Replaces spaces in comp items with hyphens.
 
 ## IanLib
+
+## layerStartTimesToInPoints
+
+A layer's inPoint is often the same as its startPoint. But if you've trimmed
+it (either a nest comp or a footage file, say) then the inPoint reflects the
+trimmed point, whereas the startPoint will reflect the "untrimmed" beginning
+of the layer.
+
+This script will change selected layers so that their startPoint moves to
+where their current inPoint is.
+
+BONUS THING: hold down alt (option on Mac) to line up all the layers'
+startTimes to the comp's curren time.
 
 ## listComps
 
@@ -117,10 +148,6 @@ the hierarchy intact.
 Parents the selected layers to the topmost layer, while trying to keep any
 existing hierarchy intact.
 
-## projectSelectionIntoFolder
-
-Collects selected items into a folder named "\_support".
-
 ## quickCompPrefixer
 
 Adds a prefix to the name of each selected comp. That's it.
@@ -136,7 +163,7 @@ cool-comps/pear
 … then the renderer will output files called "banana", "mango", and "pear" in
 a folder named "cool-comps" (if it exists).
 
-I made a video about this: [https://youtu.be/d1WLeTFQ15k][36]
+I made a video about this: [https://youtu.be/d1WLeTFQ15k][38]
 
 ## quickLayerRenamer
 
@@ -251,72 +278,76 @@ self-contained reveal. Neat!
 
 [1]: #allcompstosametime
 
-[2]: #easealternatekeyframes
+[2]: #applypresetatbeginningofselectedlayers
 
-[3]: #embiggenselectedcomps
+[3]: #collectselectionintofolder
 
-[4]: #fuzzyopen
+[4]: #easealternatekeyframes
 
-[5]: #highlightlatestcomps
+[5]: #embiggenselectedcomps
 
-[6]: #highlightnestedcomps
+[6]: #fuzzyopen
 
-[7]: #hyphenate
+[7]: #highlightlatestcomps
 
-[8]: #ianlib
+[8]: #highlightnestedcomps
 
-[9]: #listcomps
+[9]: #hyphenate
 
-[10]: #listlayers
+[10]: #ianlib
 
-[11]: #nullsfromselected
+[11]: #layerstarttimestoinpoints
 
-[12]: #lastselectedisparent
+[12]: #listcomps
 
-[13]: #parentundertopmost
+[13]: #listlayers
 
-[14]: #projectselectionintofolder
+[14]: #nullsfromselected
 
-[15]: #quickcompprefixer
+[15]: #lastselectedisparent
 
-[16]: #quicklayerrenamer
+[16]: #parentundertopmost
 
-[17]: #rectanglearoundcomp
+[17]: #quickcompprefixer
 
-[18]: #selectallpathprops
+[18]: #quicklayerrenamer
 
-[19]: #selectallcolourproperties
+[19]: #rectanglearoundcomp
 
-[20]: #selectstrokeswithoutexpression
+[20]: #selectallpathprops
 
-[21]: #selectdescendants
+[21]: #selectallcolourproperties
 
-[22]: #selectellipses
+[22]: #selectstrokeswithoutexpression
 
-[23]: #selectidenticalproperties
+[23]: #selectdescendants
 
-[24]: #propertybank
+[24]: #selectellipses
 
-[25]: #selectimmediatechildren
+[25]: #selectidenticalproperties
 
-[26]: #selectkeystotheright
+[26]: #propertybank
 
-[27]: #selectlayerswithoutparents
+[27]: #selectimmediatechildren
 
-[28]: #selectnonnestedcomps
+[28]: #selectkeystotheright
 
-[29]: #selectpropertiesbyregexp
+[29]: #selectlayerswithoutparents
 
-[30]: #selectrelated
+[30]: #selectnonnestedcomps
 
-[31]: #selectstrokecolours
+[31]: #selectpropertiesbyregexp
 
-[32]: #selectstrokewidths
+[32]: #selectrelated
 
-[33]: #selectstrokesandfills
+[33]: #selectstrokecolours
 
-[34]: #selecttoplevelgroups
+[34]: #selectstrokewidths
 
-[35]: #setupmaskanimation
+[35]: #selectstrokesandfills
 
-[36]: https://youtu.be/d1WLeTFQ15k
+[36]: #selecttoplevelgroups
+
+[37]: #setupmaskanimation
+
+[38]: https://youtu.be/d1WLeTFQ15k

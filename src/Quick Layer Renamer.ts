@@ -21,8 +21,8 @@
 
 	let counter = 1
 
-	for (let thing of selectedLayers) {
-		thing.name = `${s}:${counter}`
+	for (let currentLayer of selectedLayers) {
+		currentLayer.name = `${s}:${counter}`
 		counter++
 	}
 })()
