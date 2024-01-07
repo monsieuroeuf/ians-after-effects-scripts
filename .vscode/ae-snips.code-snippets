@@ -31,4 +31,11 @@
 	  ],
 	  "description": "Target ae"
 	},
+	 "Inc ianlib": {
+	  "scope": "typescript",
+	  "prefix": "ian",
+	  "body": [
+		"//@include \"./IanLib.js\""
+	  ]
+	},
 }
