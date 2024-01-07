@@ -1,7 +1,7 @@
 //@target aftereffects
 
 /**
- * Replaces spaces in comp items with hyphens.
+ * Replace spaces in selected project items with hyphens.
  */
 
 (function hyphenate() {
