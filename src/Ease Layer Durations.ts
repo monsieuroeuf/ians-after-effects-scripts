@@ -41,20 +41,20 @@ type EaseFunction = (t: number, b: number, c: number, d: number) => number
 		return quintEaseOut(t, b, c, d)
 	}
 
-	app.beginUndoGroup("Expo layer zap")
+	app.beginUndoGroup("Ease Layer Durations")
 
-	var selectedLayers = aeq.getSelectedLayersOrAll()
+	const selectedLayers = aeq.getSelectedLayersOrAll()
 	const increment = (TOTAL_DURATION / selectedLayers.length) * 0.5
 
 	for (let currentLayer of selectedLayers) {
 
-		var inPoint = tween(t, BEGINNING, END, TOTAL_DURATION)
+		var inPoint  = tween(t, BEGINNING, END, TOTAL_DURATION)
 		var outPoint = tween(t + increment, BEGINNING, END, TOTAL_DURATION)
 
-		$.write("t : " + t)
+		$.write("t : "    + t)
 		$.writeln(" in: " + inPoint)
 
-		currentLayer.inPoint = inPoint
+		currentLayer.inPoint  = inPoint
 		currentLayer.outPoint = outPoint
 		t += increment
 	}
