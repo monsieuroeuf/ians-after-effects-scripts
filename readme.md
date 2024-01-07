@@ -2,25 +2,54 @@
 
 ### Table of Contents
 
-*   [embiggenSelectedComps][1]
-*   [fuzzyOpen][2]
-*   [highlightNestedComps][3]
-*   [IanLib][4]
-*   [listComps][5]
-*   [listLayers][6]
-*   [nullsFromSelected][7]
-*   [lastSelectedIsParent][8]
-*   [parentUnderTopmost][9]
-*   [beginUndoGroup][10]
-    *   [Parameters][11]
-*   [beginUndoGroup][12]
-*   [quickLayerRenamer][13]
-*   [selectAllPathProps][14]
-*   [selectIdenticalProperties][15]
-*   [PropertyBank][16]
-*   [DEBUGGING][17]
-*   [useAEQ][18]
-*   [defaultMatch][19]
+*   [allCompsToSameTime][1]
+*   [easeAlternateKeyframes][2]
+*   [embiggenSelectedComps][3]
+*   [fuzzyOpen][4]
+*   [highlightLatestComps][5]
+*   [highlightNestedComps][6]
+*   [hyphenate][7]
+*   [IanLib][8]
+*   [listComps][9]
+*   [listLayers][10]
+*   [nullsFromSelected][11]
+*   [lastSelectedIsParent][12]
+*   [parentUnderTopmost][13]
+*   [projectSelectionIntoFolder][14]
+*   [quickCompPrefixer][15]
+*   [quickLayerRenamer][16]
+*   [rectangleAroundComp][17]
+*   [selectAllPathProps][18]
+*   [selectAllColourProperties][19]
+*   [selectStrokesWithoutExpression][20]
+*   [selectDescendants][21]
+*   [selectEllipses][22]
+*   [selectIdenticalProperties][23]
+*   [PropertyBank][24]
+*   [selectImmediateChildren][25]
+*   [selectKeysToTheRight][26]
+*   [selectLayersWithoutParents][27]
+*   [selectNonNestedComps][28]
+*   [selectPropertiesByRegexp][29]
+*   [selectRelated][30]
+*   [selectStrokeColours][31]
+*   [selectStrokeWidths][32]
+*   [selectStrokesAndFills][33]
+*   [selectTopLevelGroups][34]
+*   [setupMaskAnimation][35]
+
+## allCompsToSameTime
+
+Sets the current time in all selected comps to 4 seconds. I wrote this to see
+titles after they've built, and ensure everything looks OK.
+
+Also works with folders, just select top level folders and it will look in
+them (and their subfolders) for comps – thanks aequery!
+
+## easeAlternateKeyframes
+
+Eases alternate keyframes on selected properties.
+A work in progress :)
 
 ## embiggenSelectedComps
 
@@ -30,10 +59,36 @@ Quick and rough way to embiggen a few comps
 
 Reads a plain text file that contains a comp ID, and opens that comp.
 
+## highlightLatestComps
+
+I use a numbering system for my comps, so I can keep track of versions. Each
+unique top-level comp starts with a two digit number, and if I need to bump
+the version then I append the version. For example if I had 74 versions of
+the 01-cool-intro comp:
+
+01-cool-intro-01
+01-cool-intro-02
+...
+01-cool-intro-74
+
+… this script would select 01-cool-intro-74.
+
+This script descends into all folders and subfolders, and selects the highest
+version of each comp.
+
+It uses the underscore.js library, which is included in the repo.
+
+Note that this ONLY looks at the first two digits of the comp name, so if two
+separate comps begin with the same numbered prefix, it's not gonna work.
+
 ## highlightNestedComps
 
 First, deselect everything in the project. Then, select every comp that's
 nested in another comp.
+
+## hyphenate
+
+Replaces spaces in comp items with hyphens.
 
 ## IanLib
 
@@ -62,31 +117,60 @@ the hierarchy intact.
 Parents the selected layers to the topmost layer, while trying to keep any
 existing hierarchy intact.
 
-## beginUndoGroup
+## projectSelectionIntoFolder
 
-Quick Comp Renamer
+Collects selected items into a folder named "\_support".
 
-Adds a prefix to the name of each selected comp.
+## quickCompPrefixer
 
-### Parameters
+Adds a prefix to the name of each selected comp. That's it.
 
-*   `s` **[string][20]** The prefix to add to the comp name. (optional, default `""`)
+Here's my favourite way to use this. If you prefix a comp with a name
+followed by a forward slash, during rendering it will be placed in a folder
+with that name. For example, if you have a series of comps named like so:
 
-Returns **void**&#x20;
+cool-comps/banana
+cool-comps/mango
+cool-comps/pear
 
-## beginUndoGroup
+… then the renderer will output files called "banana", "mango", and "pear" in
+a folder named "cool-comps" (if it exists).
 
-Uses aequery's Layer.relatedLayers() to select all parents and children of
-the selected layers.
+I made a video about this: [https://youtu.be/d1WLeTFQ15k][36]
 
 ## quickLayerRenamer
 
 Asks for a prefix, and renames each layer to that prefix, with a number.
 e.g. with the prefix "foo", the layers would be named "foo:1", "foo:2", etc.
 
+## rectangleAroundComp
+
+Make a shape layer with a rect the size of THIS comp. Holding down the alt
+key will add an expression to the size, so that it always matches the comp
+size. Default is blue, but the auto-sizing version is yellow. For some reason.
+
 ## selectAllPathProps
 
-Selects every "path" property on selected layers
+Selects every "path" property on selected layers.
+
+## selectAllColourProperties
+
+Selects all the "colour" properties in the selected layers.
+
+## selectStrokesWithoutExpression
+
+Selects all strokes without an expression. Not sure what the original goal
+was, but I like the use of aeq(). I've left it here as an example.
+
+## selectDescendants
+
+Recursively select children of selected layers. You can right-click on a
+layer and do the same thing, but this is helpful enough that I wanted to
+assign a keyboard shortcut to it.
+
+## selectEllipses
+
+Selects all the layers with an ellipse in 'em
 
 ## selectIdenticalProperties
 
@@ -103,18 +187,44 @@ layer and want to update its colour or stroke etc.
 
 ## PropertyBank
 
-## DEBUGGING
+## selectImmediateChildren
+
+Given a selection, select only the immediate children of those layers (not
+the whole tree).
+
+## selectKeysToTheRight
+
+With each selected property, select keys to the right of the current time.
+Deselect keys to the left.
+
+## selectLayersWithoutParents
+
+Select layers in the active compostion that don't have any parent, while
+deselecting those that do.
+
+## selectNonNestedComps
+
+Select all comps that are not nested in any other comp
+
+## selectPropertiesByRegexp
 
 Select all properties that match a regex. We'll ignore properties that are
 usually hidden, like "Layer Styles" and "Material Options".
 
-## useAEQ
+## selectRelated
+
+Uses aequery's Layer.relatedLayers() to select all parents and children of
+the selected layers.
+
+## selectStrokeColours
+
+Selects all "stroke colour" properties in the active composition.
+
+## selectStrokeWidths
 
 Selects all the "Stroke Width" properties on selected layers.
 
-## defaultMatch
-
-Select Strokes and Fills
+## selectStrokesAndFills
 
 Selects all strokes and fills on selected layers using the extremely nifty
 aeq function. It'll descend into groups and select strokes 'n' fills at any
@@ -123,42 +233,90 @@ level.
 Default is to select both strokes and fills. If you hold alt (option on Mac),
 it'll select only strokes. If you hold shift, it'll select only fills.
 
-[1]: #embiggenselectedcomps
+## selectTopLevelGroups
 
-[2]: #fuzzyopen
+Operates on selected layers in current comp.  Simplify shape layers by
+selecting all the top-level groups … which then you can group. If there are
+no top-level groups on a layer, it will deselect it and continue looking.
 
-[3]: #highlightnestedcomps
+NOTE: this seems to run faster if you select all the layers? Rather than
+just one. Weird
 
-[4]: #ianlib
+## setupMaskAnimation
 
-[5]: #listcomps
+This adds default masks to each selected layer, then keyframes the mask shape
+twice: *now*, and KEYFRAME\_DISTANCE from now. Plus position property. Then you
+can use the "pan behind" tool to move the layer, creating a little
+self-contained reveal. Neat!
 
-[6]: #listlayers
+[1]: #allcompstosametime
 
-[7]: #nullsfromselected
+[2]: #easealternatekeyframes
 
-[8]: #lastselectedisparent
+[3]: #embiggenselectedcomps
 
-[9]: #parentundertopmost
+[4]: #fuzzyopen
 
-[10]: #beginundogroup
+[5]: #highlightlatestcomps
 
-[11]: #parameters
+[6]: #highlightnestedcomps
 
-[12]: #beginundogroup-1
+[7]: #hyphenate
 
-[13]: #quicklayerrenamer
+[8]: #ianlib
 
-[14]: #selectallpathprops
+[9]: #listcomps
 
-[15]: #selectidenticalproperties
+[10]: #listlayers
 
-[16]: #propertybank
+[11]: #nullsfromselected
 
-[17]: #debugging
+[12]: #lastselectedisparent
 
-[18]: #useaeq
+[13]: #parentundertopmost
 
-[19]: #defaultmatch
+[14]: #projectselectionintofolder
 
-[20]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String
+[15]: #quickcompprefixer
+
+[16]: #quicklayerrenamer
+
+[17]: #rectanglearoundcomp
+
+[18]: #selectallpathprops
+
+[19]: #selectallcolourproperties
+
+[20]: #selectstrokeswithoutexpression
+
+[21]: #selectdescendants
+
+[22]: #selectellipses
+
+[23]: #selectidenticalproperties
+
+[24]: #propertybank
+
+[25]: #selectimmediatechildren
+
+[26]: #selectkeystotheright
+
+[27]: #selectlayerswithoutparents
+
+[28]: #selectnonnestedcomps
+
+[29]: #selectpropertiesbyregexp
+
+[30]: #selectrelated
+
+[31]: #selectstrokecolours
+
+[32]: #selectstrokewidths
+
+[33]: #selectstrokesandfills
+
+[34]: #selecttoplevelgroups
+
+[35]: #setupmaskanimation
+
+[36]: https://youtu.be/d1WLeTFQ15k
