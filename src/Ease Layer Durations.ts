@@ -1,22 +1,22 @@
 //@target aftereffects
 
+type EaseFunction = (t: number, b: number, c: number, d: number) => number
+
 /**
  * Select a group of layers and this will adjust the in and out points so that
  * their overall duration eases out exponentially. Play with the constants at
  * the top of the file to get different results.
  */
 
-type EaseFunction = (t: number, b: number, c: number, d: number) => number
-
 (function easeLayerDurations() {
 	//@include "../lib/aequery.js"
 
 	// fiddle around with these settings for different results
 	const TOTAL_DURATION = 22.0
-	const BEGINNING = 0
-	const END = 15
-	let t = BEGINNING
+	const BEGINNING      = 0
+	const END            = 15
 
+	let t = BEGINNING
 
 	const quadEaseOut: EaseFunction = (t, b, c, d) => {
 		if (t == d) { return c }
