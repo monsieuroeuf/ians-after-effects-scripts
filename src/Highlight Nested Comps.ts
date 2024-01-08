@@ -2,9 +2,8 @@
 
 /**
  * 
- * First, deselect everything in the project. Then, select every comp that's
- * nested in another comp.
- * 
+ *  Select every comp that's nested in another comp.
+ *  
  */
 
 (function highlightNestedComps() {
