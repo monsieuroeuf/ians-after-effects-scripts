@@ -10,7 +10,6 @@
  *  just one. Weird
  */
 
-
 (function selectTopLevelGroups() {
 	//@include "./lib/aequery.js"
 	clearOutput()
@@ -27,7 +26,9 @@
 			continue
 		}
 
-		const numProperties = currentLayer.property("Contents").numProperties
+		const contentsProp = currentLayer.property("Contents") as PropertyGroup
+		const numProperties = contentsProp.numProperties
+
 		if (numProperties === 0) continue
 
 		for (let i = 1; i <= numProperties; i++) {
