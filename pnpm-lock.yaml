@@ -1,0 +1,27 @@
+lockfileVersion: '6.0'
+
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
+
+dependencies:
+  aequery:
+    specifier: github:monsieuroeuf/aequery
+    version: github.com/monsieuroeuf/aequery/d9d818de4153cf629ee5461c594363933caa843d
+  types-for-adobe:
+    specifier: github:docsforadobe/Types-for-Adobe
+    version: github.com/docsforadobe/Types-for-Adobe/b0f99a152aa60e0e3deb69532944dcc8a48e8abe
+
+packages:
+
+  github.com/docsforadobe/Types-for-Adobe/b0f99a152aa60e0e3deb69532944dcc8a48e8abe:
+    resolution: {tarball: https://codeload.github.com/docsforadobe/Types-for-Adobe/tar.gz/b0f99a152aa60e0e3deb69532944dcc8a48e8abe}
+    name: types-for-adobe
+    version: 7.1.0
+    dev: false
+
+  github.com/monsieuroeuf/aequery/d9d818de4153cf629ee5461c594363933caa843d:
+    resolution: {tarball: https://codeload.github.com/monsieuroeuf/aequery/tar.gz/d9d818de4153cf629ee5461c594363933caa843d}
+    name: aequery
+    version: 0.7.1
+    dev: false
