@@ -6,8 +6,8 @@
  */
 
 (function distributeLayerInPoints() {
-	//@include "../lib/aequery.js"
-	//@include "./IanLib.js"
+	//@include "./lib/aequery.js"
+	//@include "./lib/IanLib.js"
 
 	function distributeInPoints() {
 		// to save the settings between invocations

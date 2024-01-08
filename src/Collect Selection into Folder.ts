@@ -7,8 +7,8 @@
  */
 
 (function collectSelectionIntoFolder() {
-    //@include "../lib/aequery.js"
-    //@include "./IanLib.js" 
+    //@include "./lib/aequery.js"
+    //@include "./lib/IanLib.js" 
 
     const KEY_NAME = "collectIntoFolderName"
     app.beginUndoGroup("Collect into folder")

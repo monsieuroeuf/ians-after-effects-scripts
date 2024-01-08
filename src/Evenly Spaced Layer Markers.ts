@@ -10,7 +10,7 @@ enum beginningTimeType {
  */
 
 (function evenlySpacedLayerMarkers() {
-	//@include "./IanLib.js"
+	//@include "./lib/IanLib.js"
 
 	const activeItem = app.project.activeItem as CompItem
 	const selectedLayers = activeItem.selectedLayers

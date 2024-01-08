@@ -6,7 +6,7 @@
  */
 
 (function parentUnderTopmost() {
-	//@include "../lib/aequery.js"
+	//@include "./lib/aequery.js"
 	app.beginUndoGroup("Parent from topmost")
 
 	const activeComp = app.project.activeItem as CompItem

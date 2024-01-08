@@ -3,29 +3,18 @@
 /**
  * Selects all "stroke colour" properties in the active composition.
  * 
- * @todo make a speedier version.
  */
 
 (function selectStrokeColours() {
-	//@include "../lib/aequery.js"
-	function firstAttempt() {
-		aeq("layer[selected] propgroup[name='Stroke']", aeq.getActiveComposition()).forEach((current: Property) => {
-			try {
-				aeq("prop[name='Color']", current).forEach((colorProp: Property<ColorProperty>) => {
+	//@include "./lib/aequery.js"
+	const STROKE_MATCHNAME = "ADBE Vector Stroke Color"
 
-					$.writeln(colorProp);
-					// debugger;
-					colorProp.selected = true;
-				});
-			} catch (e) { $.writeln(e); }
-		});
-	}
+	app.beginUndoGroup("Select stroke colours")
 
-	function secondAttempt() {
-		aeq("prop[matchName='ADBE Vector Stroke Color']", aeq.getActiveComposition()).forEach((current: Property) => {
-			$.writeln(current);
-			current.selected = true;
-		})
-	}
-	secondAttempt();
-}());
+	aeq.forEachProperty(aeq.getSelectedLayersOrAll(), (currentProp: Property) => {
+		if (currentProp.matchName === STROKE_MATCHNAME) {
+			currentProp.selected = true
+		}
+	})
+
+})()

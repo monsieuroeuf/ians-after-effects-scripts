@@ -7,7 +7,7 @@
 */
 
 (function nullsFromSelected() {
-	//@include "../lib/aequery.js"
+	//@include "./lib/aequery.js"
 	app.beginUndoGroup("Nulls from selected");
 
 	const selectedLayers = aeq.getSelectedLayers();

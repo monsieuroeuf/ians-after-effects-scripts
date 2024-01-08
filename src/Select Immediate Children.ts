@@ -6,7 +6,7 @@
  */
 
 (function selectImmediateChildren() {
-	//@include "../lib/aequery.js"
+	//@include "./lib/aequery.js"
 	app.beginUndoGroup("Select immediate children")
 
 	aeq.getSelectedLayers().forEach((layer: Layer) => {

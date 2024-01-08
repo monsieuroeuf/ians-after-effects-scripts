@@ -9,7 +9,7 @@ type EaseFunction = (t: number, b: number, c: number, d: number) => number
  */
 
 (function easeLayerDurations() {
-	//@include "../lib/aequery.js"
+	//@include "./lib/aequery.js"
 
 	// fiddle around with these settings for different results
 	const TOTAL_DURATION = 22.0

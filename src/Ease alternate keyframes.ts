@@ -6,7 +6,7 @@
  */
 
 (function easeAlternateKeyframes() {
-	//@include "../lib/aequery.js"
+	//@include "./lib/aequery.js"
 
 	function figureOutDimensions(prop: Property) {
 		switch (prop.propertyValueType) {
@@ -30,19 +30,19 @@
 
 	function easeEmKeys(prop: Property) {
 
-		let easeIn : KeyframeEase
+		let easeIn: KeyframeEase
 		let easeOut: KeyframeEase
-		var counter = 0; // this needs to be kept separate from the loop counter, so we can skip roving keyframes
+		var counter = 0 // this needs to be kept separate from the loop counter, so we can skip roving keyframes
 
 		var smooth = new KeyframeEase(0.1, 60)
 		var sharp = new KeyframeEase(0.0, 0.1)
 
 		for (var c = 1; c <= prop.numKeys; c++) {
 			if (c % 2 == 0) {
-				easeIn  = smooth
+				easeIn = smooth
 				easeOut = sharp
 			} else {
-				easeIn  = sharp
+				easeIn = sharp
 				easeOut = smooth
 			}
 			prop.setTemporalEaseAtKey(c, [easeIn], [easeOut])
@@ -54,7 +54,9 @@
 	var selectedProperties = aeq.getSelectedProperties()
 
 	for (let current of selectedProperties) {
-		easeEmKeys(current)
+		if ('propertyValueType' in current) {
+			easeEmKeys(current)
+		}
 	}
 
 	app.endUndoGroup()

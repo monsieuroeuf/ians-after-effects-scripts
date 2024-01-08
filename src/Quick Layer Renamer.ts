@@ -6,8 +6,8 @@
 */
 
 (function quickLayerRenamer() {
-	//@include "../lib/aequery.js"
-	//@include "./IanLib.js"
+	//@include "./lib/aequery.js"
+	//@include "./lib/IanLib.js"
 
 	app.beginUndoGroup("Quick Layer Renamer")
 	const KEY_NAME = "quickLayerRenamer"

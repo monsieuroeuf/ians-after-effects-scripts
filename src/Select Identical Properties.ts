@@ -14,7 +14,7 @@
  */
 
 (function selectIdenticalProperties() {
-	//@include "../lib/aequery.js"; 
+	//@include "./lib/aequery.js"; 
 
 	class PropertyBank {
 		propHierarchyAry: Array<PropertyBase>

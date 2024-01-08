@@ -1,4 +1,5 @@
 ﻿//@target aftereffects
+// include types for aequery
 
 /**
  * If you apply a preset that contains keyframes, it will apply them at the
@@ -11,7 +12,11 @@
  */
 
 (function applyPresetAtBeginningOfSelectedLayers() {
-	//@include "../lib/aequery.js"
+	//@include "./lib/aequery.js"
+
+	aeq.comp.create("yay", {name:"bonkno"})
+
+	
 
 	const preset = File.openDialog("Choose a preset (ffx file)", undefined, false)
 	if (!preset) return
