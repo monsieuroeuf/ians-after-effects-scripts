@@ -25,7 +25,7 @@
 		IanLib.setPref(KEY_NAME, amt)
 
 		const thisComp = app.project.activeItem as CompItem
-		const thisFPS = thisComp.frameRate
+		const thisFPS  = thisComp.frameRate
 
 		let durationToDistribute = currentFormatToTime(amt, thisFPS, true)
 
