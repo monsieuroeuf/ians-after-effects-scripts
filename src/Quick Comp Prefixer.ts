@@ -20,8 +20,8 @@
  */ 
 
 (function quickCompPrefixer() {
-	//@include "../lib/aequery.js"
-	//@include "./IanLib.js"
+	//@include "./lib/aequery.js"
+	//@include "./lib/IanLib.js"
 
 	app.beginUndoGroup("Quick Comp Prefixer")
 	const KEY_NAME = "quickCompPrefixer"

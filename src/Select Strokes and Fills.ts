@@ -12,10 +12,10 @@
  */
 
 (function selectStrokesAndFills() {
-	//@include "../lib/aequery.js"
+	//@include "./lib/aequery.js"
 	const defaultMatch = "ADBE Vector Graphic - (Stroke|Fill)"
-	const strokeOnly = "ADBE Vector Graphic - Stroke"
-	const fillOnly = "ADBE Vector Graphic - Fill"
+	const strokeOnly   = "ADBE Vector Graphic - Stroke"
+	const fillOnly     = "ADBE Vector Graphic - Fill"
 
 	let searchMatch = defaultMatch
 
@@ -27,7 +27,8 @@
 		searchMatch = fillOnly
 	}
 
-	aeq(`layer[selected] propgrp[matchName=/${searchMatch}/]`).forEach((prop: Property) => {
+	const propsWeWant = aeq(`propgrp[matchName=/${searchMatch}/]`) as AEQArrayEx<Property>
+	propsWeWant.forEach((prop: Property) => {
 		try {
 			prop.selected = true
 		} catch (error) {

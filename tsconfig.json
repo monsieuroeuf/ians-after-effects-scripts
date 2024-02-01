@@ -7,7 +7,8 @@
     // "sourceMap": true,
     // "inlineSourceMap": true,
     "types": [
-      "types-for-adobe/AfterEffects/23.0"
+      "types-for-adobe/AfterEffects/23.0",
+      "./src/types/aequery"
     ]
 
   },

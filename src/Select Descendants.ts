@@ -7,7 +7,7 @@
  */
 
 (function selectDescendants() {
-	//@include "../lib/aequery.js"
+	//@include "./lib/aequery.js"
 	app.beginUndoGroup("Select children")
 
 	const selectedLayers = aeq.getSelectedLayers()

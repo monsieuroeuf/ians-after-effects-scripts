@@ -19,7 +19,7 @@
 		"scope": "javascript,typescript",
 		"prefix": "inc",
 		"body": [
-			"//@include \"../lib/aequery.js\""
+			"//@include \"./lib/aequery.js\""
 		],
 		"description": "Include aescripts"
 	},
@@ -35,7 +35,7 @@
 	  "scope": "typescript",
 	  "prefix": "ian",
 	  "body": [
-		"//@include \"./IanLib.js\""
+		"//@include \"./lib/IanLib.js\""
 	  ]
 	},
 }

@@ -6,10 +6,10 @@
  */
 
 (function selectKeysToTheRight() {
-	//@include "../lib/aequery.js"
+	//@include "./lib/aequery.js"
 
 	const comp        = aeq.getActiveComposition()
-	const selProps    = aeq.getSelectedProperties(comp)
+	const selProps    = aeq.getSelectedProperties(comp) as AEQArrayEx<Property>
 	const allKeys     = aeq.getKeys(selProps)
 	const currentTime = comp.time
 

@@ -5,7 +5,7 @@
  */
 
 (function listLayers() {
-	//@include "../lib/aequery.js"
+	//@include "./lib/aequery.js"
 	app.beginUndoGroup("List comps");
 
 	const DEST = '/Users/ian/tmp/ae/layers.out.txt'

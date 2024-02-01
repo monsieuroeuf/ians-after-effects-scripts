@@ -15,7 +15,7 @@
  */
 
 (function layerStartTimesToInPoints() {
-    //@include "../lib/aequery.js"
+    //@include "./lib/aequery.js"
 
     const proj = app.project
     const undoStr = "Layer startTimes to inPoints"

@@ -6,7 +6,7 @@
  */
 
 (function lastSelectedIsParent() {
-	//@include "../lib/aequery.js"
+	//@include "./lib/aequery.js"
 	app.beginUndoGroup("Last Selected is Parent")
 
 	// save the selected layers
