@@ -7,16 +7,20 @@
 		"aequery": "github:monsieuroeuf/aequery",
 		"types-for-adobe": "github:docsforadobe/Types-for-Adobe"
 	},
-	"devDependencies": {
-	},
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1",
 		"build": "tsc -p .",
 		"watch": "tsc -p . --watch",
-		"clean": "rm -r ./dist && tsc -p .",
-		"docs": "documentation build dist/*js -f md -o readme.md"
+		"clean": "rimraf ./dist && tsc -p . && npm run copy-lib",
+		"docs": "documentation build dist/*js -f md -o readme.md",
+		"copy-lib": "node scripts/copy-lib.js"
 	},
 	"keywords": [],
 	"author": "",
-	"license": "ISC"
+	"license": "ISC",
+	"devDependencies": {
+		"glob": "^10.3.10",
+		"ncp": "^2.0.0",
+		"rimraf": "^5.0.5"
+	}
 }

@@ -15,7 +15,7 @@ if (typeof FUZZYOPEN_LISTCOMPS !== "object") {
 
 (function listComps() {
 	//@include "./lib/aequery.js"
-	//@include "../lib/json2.js"
+	//@include "./lib/json2.js"
 	//@include "./lib/IanLib.js"
 
 	const DEBUGGING = true
