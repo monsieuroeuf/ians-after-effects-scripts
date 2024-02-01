@@ -1,7 +1,7 @@
 //@target aftereffects
 
 /**
- * Select all comps that are not nested in any other comp
+ * Select all comps that are not nested in any other comp.
  */
 
 (function selectNonNestedComps() {

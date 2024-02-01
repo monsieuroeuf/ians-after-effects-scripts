@@ -1,7 +1,7 @@
 //@target aftereffects
 
 /**
- * Selects all the layers with an ellipse in 'em
+ * Selects all the layers with an ellipse in 'em.
  * 
  * @todo make a speeder "non aeq()" version
  */

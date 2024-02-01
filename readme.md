@@ -7,13 +7,13 @@
 *   [collectSelectionIntoFolder][3]
 *   [distributeLayerInPoints][4]
 *   [easeAlternateKeyframes][5]
-*   [embiggenSelectedComps][6]
-*   [evenlySpacedLayerMarkers][7]
-*   [fuzzyOpen][8]
-*   [highlightLatestComps][9]
-*   [highlightNestedComps][10]
-*   [hyphenate][11]
-*   [IanLib][12]
+*   [easeLayerDurations][6]
+*   [embiggenSelectedComps][7]
+*   [evenlySpacedLayerMarkers][8]
+*   [fuzzyOpen][9]
+*   [highlightLatestComps][10]
+*   [highlightNestedComps][11]
+*   [hyphenate][12]
 *   [layerStartTimesToInPoints][13]
 *   [listComps][14]
 *   [listLayers][15]
@@ -21,27 +21,26 @@
 *   [lastSelectedIsParent][17]
 *   [parentUnderTopmost][18]
 *   [quickCompPrefixer][19]
-*   [quickCompRenamer][20]
-*   [quickLayerRenamer][21]
-*   [rectangleAroundComp][22]
-*   [selectAllPathProps][23]
-*   [selectAllColourProperties][24]
-*   [selectStrokesWithoutExpression][25]
-*   [selectDescendants][26]
-*   [selectEllipses][27]
-*   [selectIdenticalProperties][28]
-*   [PropertyBank][29]
-*   [selectImmediateChildren][30]
-*   [selectKeysToTheRight][31]
-*   [selectLayersWithoutParents][32]
-*   [selectNonNestedComps][33]
-*   [selectPropertiesByRegexp][34]
-*   [selectRelated][35]
-*   [selectStrokeColours][36]
-*   [selectStrokeWidths][37]
-*   [selectStrokesAndFills][38]
-*   [selectTopLevelGroups][39]
-*   [setupMaskAnimation][40]
+*   [quickLayerRenamer][20]
+*   [rectangleAroundComp][21]
+*   [selectAllPathProps][22]
+*   [selectAllColourProperties][23]
+*   [selectStrokesWithoutExpression][24]
+*   [selectDescendants][25]
+*   [selectEllipses][26]
+*   [selectIdenticalProperties][27]
+*   [PropertyBank][28]
+*   [selectImmediateChildren][29]
+*   [selectKeysToTheRight][30]
+*   [selectLayersWithoutParents][31]
+*   [selectNonNestedComps][32]
+*   [selectPropertiesByRegexp][33]
+*   [selectRelated][34]
+*   [selectStrokeColours][35]
+*   [selectStrokeWidths][36]
+*   [selectStrokesAndFills][37]
+*   [selectTopLevelGroups][38]
+*   [setupMaskAnimation][39]
 
 ## allCompsToSameTime
 
@@ -50,6 +49,10 @@ titles after they've built, and ensure everything looks OK.
 
 Also works with folders, just select top level folders and it will look in
 them (and their subfolders) for comps – thanks aequery!
+
+(Wondering what "Poster Time" is? It refers to the thumbnail that's shown in
+the Project panel. Often my comps start out black, so I set the Poster Time to
+4 seconds so I can see what's in the comp without opening it.)
 
 ## applyPresetAtBeginningOfSelectedLayers
 
@@ -76,6 +79,12 @@ distributes selected layers, by frame, starting where you have the time indicato
 
 Eases alternate keyframes on selected properties.
 Part experiment, part work-in-progress.
+
+## easeLayerDurations
+
+Select a group of layers and this will adjust the in and out points so that
+their overall duration eases out exponentially. Play with the constants at
+the top of the file to get different results.
 
 ## embiggenSelectedComps
 
@@ -113,14 +122,11 @@ separate comps begin with the same numbered prefix, it's not gonna work.
 
 ## highlightNestedComps
 
-First, deselect everything in the project. Then, select every comp that's
-nested in another comp.
+Select every comp that's nested in another comp.
 
 ## hyphenate
 
 Replace spaces in selected project items with hyphens.
-
-## IanLib
 
 ## layerStartTimesToInPoints
 
@@ -168,18 +174,16 @@ Here's my favourite way to use this. If you prefix a comp with a name
 followed by a forward slash, during rendering it will be placed in a folder
 with that name. For example, if you have a series of comps named like so:
 
-    cool-comps/banana
-    cool-comps/mango
-    cool-comps/pear
+```javascript
+cool-comps/banana
+cool-comps/mango
+cool-comps/pear
+```
 
 … then the renderer will output files called "banana", "mango", and "pear" in
 a folder named "cool-comps" (if it exists).
 
-I made a video about this: [https://youtu.be/d1WLeTFQ15k][41]
-
-## quickCompRenamer
-
-Adds a prefix to the name of each selected comp.
+I [made a video][40] about this nifty feature.
 
 ## quickLayerRenamer
 
@@ -203,7 +207,7 @@ Selects all the "colour" properties in the selected layers.
 ## selectStrokesWithoutExpression
 
 Selects all strokes without an expression. Not sure what the original goal
-was, but I like the use of aeq(). I've left it here as an example.
+was, but I like the use of `aeq()`, so here it stays.
 
 ## selectDescendants
 
@@ -213,7 +217,7 @@ assign a keyboard shortcut to it.
 
 ## selectEllipses
 
-Selects all the layers with an ellipse in 'em
+Selects all the layers with an ellipse in 'em.
 
 ## selectIdenticalProperties
 
@@ -225,8 +229,8 @@ property("Contents").property("Rectangle 2").property("Contents").property("Stro
 ```
 
 … the script will select the same property on other layers, but only if it
-matches the hierarchy exactly. Very handy when you've duplicated a shape
-layer and want to update its colour or stroke etc.
+matches the hierarchy exactly. Handy when you've duplicated a shape
+layer and want update the same property on all the instances.
 
 ## PropertyBank
 
@@ -247,11 +251,11 @@ deselecting those that do.
 
 ## selectNonNestedComps
 
-Select all comps that are not nested in any other comp
+Select all comps that are not nested in any other comp.
 
 ## selectPropertiesByRegexp
 
-Select all properties that match a regex. We'll ignore properties that are
+Select all properties that match a regex. Ignores properties that are
 usually hidden, like "Layer Styles" and "Material Options".
 
 ## selectRelated
@@ -302,19 +306,19 @@ self-contained reveal. Neat!
 
 [5]: #easealternatekeyframes
 
-[6]: #embiggenselectedcomps
+[6]: #easelayerdurations
 
-[7]: #evenlyspacedlayermarkers
+[7]: #embiggenselectedcomps
 
-[8]: #fuzzyopen
+[8]: #evenlyspacedlayermarkers
 
-[9]: #highlightlatestcomps
+[9]: #fuzzyopen
 
-[10]: #highlightnestedcomps
+[10]: #highlightlatestcomps
 
-[11]: #hyphenate
+[11]: #highlightnestedcomps
 
-[12]: #ianlib
+[12]: #hyphenate
 
 [13]: #layerstarttimestoinpoints
 
@@ -330,46 +334,44 @@ self-contained reveal. Neat!
 
 [19]: #quickcompprefixer
 
-[20]: #quickcomprenamer
+[20]: #quicklayerrenamer
 
-[21]: #quicklayerrenamer
+[21]: #rectanglearoundcomp
 
-[22]: #rectanglearoundcomp
+[22]: #selectallpathprops
 
-[23]: #selectallpathprops
+[23]: #selectallcolourproperties
 
-[24]: #selectallcolourproperties
+[24]: #selectstrokeswithoutexpression
 
-[25]: #selectstrokeswithoutexpression
+[25]: #selectdescendants
 
-[26]: #selectdescendants
+[26]: #selectellipses
 
-[27]: #selectellipses
+[27]: #selectidenticalproperties
 
-[28]: #selectidenticalproperties
+[28]: #propertybank
 
-[29]: #propertybank
+[29]: #selectimmediatechildren
 
-[30]: #selectimmediatechildren
+[30]: #selectkeystotheright
 
-[31]: #selectkeystotheright
+[31]: #selectlayerswithoutparents
 
-[32]: #selectlayerswithoutparents
+[32]: #selectnonnestedcomps
 
-[33]: #selectnonnestedcomps
+[33]: #selectpropertiesbyregexp
 
-[34]: #selectpropertiesbyregexp
+[34]: #selectrelated
 
-[35]: #selectrelated
+[35]: #selectstrokecolours
 
-[36]: #selectstrokecolours
+[36]: #selectstrokewidths
 
-[37]: #selectstrokewidths
+[37]: #selectstrokesandfills
 
-[38]: #selectstrokesandfills
+[38]: #selecttoplevelgroups
 
-[39]: #selecttoplevelgroups
+[39]: #setupmaskanimation
 
-[40]: #setupmaskanimation
-
-[41]: https://youtu.be/d1WLeTFQ15k
+[40]: https://youtu.be/d1WLeTFQ15k

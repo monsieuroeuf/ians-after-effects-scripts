@@ -1,7 +1,7 @@
 //@target aftereffects
 
 /**
- * Select all properties that match a regex. We'll ignore properties that are
+ * Select all properties that match a regex. Ignores properties that are
  * usually hidden, like "Layer Styles" and "Material Options".
  */
 

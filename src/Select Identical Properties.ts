@@ -9,13 +9,16 @@
  * ```
  * 
  * … the script will select the same property on other layers, but only if it
- * matches the hierarchy exactly. Very handy when you've duplicated a shape
- * layer and want to update its colour or stroke etc.
+ * matches the hierarchy exactly. Handy when you've duplicated a shape
+ * layer and want update the same property on all the instances.
  */
 
 (function selectIdenticalProperties() {
 	//@include "./lib/aequery.js"; 
 
+	/**
+	 * @hidden
+	 */
 	class PropertyBank {
 		propHierarchyAry: Array<PropertyBase>
 
@@ -30,7 +33,7 @@
 		}
 
 		toString = () => {
-			var result = ""
+			let result = ""
 			this.propHierarchyAry.reverse()
 			aeq.forEach(this.propHierarchyAry, function (item: Property) {
 				result += item.name + ", "

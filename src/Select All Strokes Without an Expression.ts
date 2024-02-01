@@ -2,7 +2,7 @@
 
 /**
  * Selects all strokes without an expression. Not sure what the original goal
- * was, but I like the use of aeq(). I've left it here as an example.
+ * was, but I like the use of `aeq()`, so here it stays.
  */
 
 (function selectStrokesWithoutExpression() {
