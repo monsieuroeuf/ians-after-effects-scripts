@@ -16,7 +16,7 @@ type EaseFunction = (t: number, b: number, c: number, d: number) => number
 	const BEGINNING      = 0
 	const END            = 15
 
-	let t = BEGINNING
+	let currentTime = BEGINNING
 
 	const quadEaseOut: EaseFunction = (t, b, c, d) => {
 		if (t == d) { return c }
@@ -44,19 +44,16 @@ type EaseFunction = (t: number, b: number, c: number, d: number) => number
 	app.beginUndoGroup("Ease Layer Durations")
 
 	const selectedLayers = aeq.getSelectedLayersOrAll()
-	const increment = (TOTAL_DURATION / selectedLayers.length) * 0.5
+	const increment      = (TOTAL_DURATION / selectedLayers.length) * 0.5
 
 	for (let currentLayer of selectedLayers) {
 
-		var inPoint  = tween(t, BEGINNING, END, TOTAL_DURATION)
-		var outPoint = tween(t + increment, BEGINNING, END, TOTAL_DURATION)
+		var inPoint  = tween(currentTime, BEGINNING, END, TOTAL_DURATION)
+		var outPoint = tween(currentTime + increment, BEGINNING, END, TOTAL_DURATION)
 
-		$.write("t : "    + t)
-		$.writeln(" in: " + inPoint)
-
-		currentLayer.inPoint  = inPoint
-		currentLayer.outPoint = outPoint
-		t += increment
+		currentLayer.inPoint   = inPoint
+		currentLayer.outPoint  = outPoint
+		currentTime           += increment
 	}
 
 })()
