@@ -4,9 +4,9 @@ Hi. Here's a smattering of little scripts that I've found helpful when using Aft
 
 ## Requirements
 
-All the requirements are in the `lib` folder – meaning that you'll need to keep the files and the `lib` folder together or they won't work.
+Everything you need is in the zip file. Skip to the next bit.
 
-A little more detail? Sure:
+OR if you're a glutton for detail, read on.
 
 - Most of these use the wonderful [aequery library](https://github.com/docsforadobe/aequery). I've included it in the `lib` folder (I hope that's OK, kind and benevolent aequery authors). Follow the link if you want to learn more, or grab the latest version, but I get the feeling it's not updated much these days.
 - One of them uses `json2.js`, but in the source code it says "USE YOUR OWN COPY" literally, in all caps like that. So I guess that one is cool.
@@ -16,7 +16,7 @@ A little more detail? Sure:
 
 1. Download the zip file, unzip it. You'll get a folder with some `*.js` files (they're the ones you run in After Effects), and a folder named `lib`. The `lib` folder contains libraries you'll need to run the scripts. 
 2. Launch After Effects, and choose `File > Scripts > Run Script File …`. Navigate to the folder you just unzipped, choose the one that will bring you happiness, and kablammo you're in business.
-3. Not working? [Let me know](mailto:ian@ketchup.net.au),
+3. Not working? [Let me know](mailto:ian@ketchup.net.au).
 
 
 ## Building from source
