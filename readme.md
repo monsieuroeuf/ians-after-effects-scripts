@@ -2,6 +2,8 @@
 
 Hi. Here's a smattering of little scripts that I've found helpful when using After Effects. They're written in TypeScript and then compiled into JavaScript that After Effects understands.
 
+I've been using these scripts for a long time, but there are always gonna be bugs. Always – always – back up your work (always).
+
 ## Requirements
 
 Everything you need is in the zip file. Skip to the next bit.
@@ -14,7 +16,7 @@ OR if you're a glutton for detail, read on.
 
 ## Getting started
 
-1. Download the zip file, unzip it. You'll get a folder with some `*.js` files (they're the ones you run in After Effects), and a folder named `lib`. The `lib` folder contains libraries you'll need to run the scripts. 
+1. [Download the zip file](https://github.com/monsieuroeuf/ians-after-effects-scripts/releases/download/v1.0.0/ians-after-effects-scripts.zip), unzip it. You'll get a folder with some `*.js` files (they're the ones you run in After Effects), and a folder named `lib`. The `lib` folder contains libraries you'll need to run the scripts. 
 2. Launch After Effects, and choose `File > Scripts > Run Script File …`. Navigate to the folder you just unzipped, choose the one that will bring you happiness, and kablammo you're in business.
 3. Not working? [Let me know](mailto:ian@ketchup.net.au).
 
@@ -34,7 +36,6 @@ npm run build
 	- Uh sure that's possible I think. You'll need to rename the script's extension to `jsx` rather than `js` though. My version of KBar only recognises `*.jsx` files when adding a script.
 - Something isn't clear or doesn't work. Question?
 	- OK wow your question is interestingly phrased. But that's fine. [Give me a shout](mailto:ian@ketchup.net.au) and I'll try to help.
-
 
 ## The Scripts
 
