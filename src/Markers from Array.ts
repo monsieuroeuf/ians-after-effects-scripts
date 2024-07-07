@@ -1,7 +1,7 @@
 //@target aftereffects
 
 (function markersFromArray() {
-    const markers = [66, 133, 201, 287, 428, 604, 701, 852, 1021, 1172, 1322, 1417, 1504, 1587, 1776, 1843, 1972,]
+    const markers = [76, 169, 206, 243, 356, 491, 611, 731, 851, 930, 1060, 1194, 1308]
 	app.beginUndoGroup("Markers from Array")
 
 	let comp = app.project.activeItem as CompItem
