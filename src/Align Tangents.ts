@@ -46,37 +46,70 @@
 							valueDiff = value2 - value1
 						}
 
-						let influence = 33.3 // Default influence value
+						const defaultInfluence = 33.3
+
+						let storeInfluence = []
+
+						let inInfluence = 33.3 // Default influence value
+						let outInfluence = 33.3 // Default influence value
 
 						const speed = valueDiff / timeDiff
+
+						// store the influences
+						for (let key of [key1, key2]) {
+							let obj = {}
+							var inTemp = property.keyInTemporalEase(key) as KeyframeEase[]
+							var outTemp = property.keyOutTemporalEase(key) as KeyframeEase[]
+
+							obj['in'] = inTemp.length > 0 ? inTemp[0].influence : defaultInfluence
+							obj['out'] = outTemp.length > 0 ? outTemp[0].influence : defaultInfluence
+
+							storeInfluence.push(obj)
+						}
+
+
+
 						// get the influence from key1
 						var inTemp = property.keyInTemporalEase(key1) as KeyframeEase[]
 						var outTemp = property.keyOutTemporalEase(key1) as KeyframeEase[]
 
 						if (inTemp.length > 0) {
-							influence = inTemp[0].influence
+							inInfluence = inTemp[0].influence
+						}
+						if (outTemp.length > 0) {
+							outInfluence = outTemp[0].influence
 						}
 
-						let key1Ease = new KeyframeEase(speed, 50)
-						let key2Ease = new KeyframeEase(speed, 50)
+						let key1EaseIn = new KeyframeEase(speed, storeInfluence[0].in)
+						let key1EaseOut = new KeyframeEase(speed, storeInfluence[0].out)
+						let key2EaseIn = new KeyframeEase(speed, storeInfluence[1].in)
+						let key2EaseOut = new KeyframeEase(speed, storeInfluence[1].out)
 
-						let key1Return: KeyframeEase[]
-						let key2Return: KeyframeEase[]
+						// let key1Return: [KeyframeEase]
+						let key1Return: [KeyframeEase, ...KeyframeEase[]]
+						let key2Return: [KeyframeEase, ...KeyframeEase[]]
+						// Set the tangents for the first key
+						property.setTemporalContinuousAtKey(key1, true)
+						property.setTemporalAutoBezierAtKey(key1, false)
+
+						// Set the tangents for the second key
+						property.setTemporalContinuousAtKey(key2, true)
+						property.setTemporalAutoBezierAtKey(key2, false)
 
 						switch (property.propertyValueType) {
 							case PropertyValueType.OneD:
 								writeLn("OneD")
-								key1Return = [key1Ease]
-								key2Return = [key2Ease]
+								property.setTemporalEaseAtKey(key1, [key1EaseIn], [key1EaseOut])
+								property.setTemporalEaseAtKey(key2, [key2EaseIn], [key2EaseOut])
 								break
 							case PropertyValueType.TwoD:
+								property.setTemporalEaseAtKey(key1, [key1EaseIn, key1EaseIn], [key1EaseOut, key1EaseOut])
+								property.setTemporalEaseAtKey(key2, [key2EaseIn, key2EaseIn], [key2EaseOut, key2EaseOut])
 								writeLn("TwoD")
-								key1Return = [key1Ease, key1Ease]
-								key2Return = [key2Ease, key2Ease]
 								break
 							case PropertyValueType.ThreeD:
-								key1Return = [key1Ease, key1Ease, key1Ease]
-								key2Return = [key2Ease, key2Ease, key2Ease]
+								property.setTemporalEaseAtKey(key1, [key1EaseIn, key1EaseIn, key1EaseIn], [key1EaseOut, key1EaseOut, key1EaseOut])
+								property.setTemporalEaseAtKey(key2, [key2EaseIn, key2EaseIn, key2EaseIn], [key2EaseOut, key2EaseOut, key2EaseOut])
 								writeLn("ThreeD")
 								break
 							default:
@@ -84,19 +117,12 @@
 						}
 
 						// alert(influence.toString())
-						influence = 20
+						// influence = 20
 
-						// Set the tangents for the first key
-						property.setTemporalContinuousAtKey(key1, true)
-						property.setTemporalAutoBezierAtKey(key1, false)
-						property.setTemporalEaseAtKey(key1, [key1Ease, key1Ease, key1Ease], [key1Ease, key1Ease, key1Ease])
 						// property.setTemporalEaseAtKey(key1, [new KeyframeEase(speed, influence)], [new KeyframeEase(speed, influence)])
 
-						// Set the tangents for the second key
-						property.setTemporalContinuousAtKey(key2, true)
-						property.setTemporalAutoBezierAtKey(key2, false)
 						// property.setTemporalEaseAtKey(key2, [new KeyframeEase(speed, influence)], [new KeyframeEase(speed, influence)])
-						property.setTemporalEaseAtKey(key2, [key2Ease, key2Ease, key2Ease], [key2Ease, key2Ease, key2Ease])
+						// property.setTemporalEaseAtKey(key2, key2Return, key2Return)
 					}
 				}
 			}
