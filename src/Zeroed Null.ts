@@ -25,6 +25,8 @@
 		newNull.selected = true
 		newNull.label    = current.label
 		newNull.transform.position.dimensionsSeparated = true
+		newNull.inPoint = current.inPoint
+		newNull.outPoint = current.outPoint
 	}
 
 	// select all the new nulls
