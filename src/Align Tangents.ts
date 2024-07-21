@@ -3,6 +3,8 @@
 
 (function () {
 
+	const minimumInfluence = 0.1
+
 	var comp = app.project.activeItem // Get the active composition
 	if (comp && comp instanceof CompItem) {
 		var selectedLayers = comp.selectedLayers
@@ -58,11 +60,17 @@
 						// store the influences
 						for (let key of [key1, key2]) {
 							let obj = {}
-							var inTemp = property.keyInTemporalEase(key) as KeyframeEase[]
-							var outTemp = property.keyOutTemporalEase(key) as KeyframeEase[]
+							const inTemp = property.keyInTemporalEase(key) as KeyframeEase[]
+							const outTemp = property.keyOutTemporalEase(key) as KeyframeEase[]
 
-							obj['in'] = inTemp.length > 0 ? inTemp[0].influence : defaultInfluence
-							obj['out'] = outTemp.length > 0 ? outTemp[0].influence : defaultInfluence
+							let inInfluence = inTemp[0].influence
+							let outInfluence = outTemp[0].influence
+
+							if (inInfluence == 0) { inInfluence = minimumInfluence }
+							if (outInfluence == 0) { outInfluence = minimumInfluence }
+
+							obj['in'] = inTemp.length > 0 ? inInfluence : defaultInfluence
+							obj['out'] = outTemp.length > 0 ? outInfluence : defaultInfluence
 
 							storeInfluence.push(obj)
 						}

@@ -4,6 +4,7 @@
     "target": "ES5",
     "noLib": true,
     "outDir": "dist",
+    "moduleDetection": "force",
     // "lib": ["ES5"],
     // "inlineSourceMap": true,
     "types": [
