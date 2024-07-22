@@ -1,65 +1,58 @@
 declare var kbar: any
 
-(function (nextOrPrev: "prev" | "next") {
+(function () {
 
-    const proj = app.project
-    const thisComp = app.project.activeItem as CompItem
-
-    clearOutput()
-
-    // how many comps does this one belong to?
-    if (thisComp.usedIn.length != 1) {
-        // writeLn(thisComp.usedIn[0].name)
-        alert("I should have ONE PARENT. I have " + thisComp.usedIn.length)
-        return
-    }
-
-    // find the layer
-    const myParent = thisComp.usedIn[0]
-    let destination: AVLayer = null
-
-    for (let c = 1; c <= myParent.layers.length; c++) {
-        const currentLayer = myParent.layers[c] as AVLayer
-        if (currentLayer.source === thisComp) {
-            destination = currentLayer
-            // myParent.openInViewer()
-            // myParent.time = thisLayer.time
-            break
-        }
-    }
-
-    let candidate: AVLayer = null
-    let target: AVLayer = null
-
-    // first make sure that the layer is not at the beginning or end of the comp
-    if (destination.index === 1 && nextOrPrev === "prev") {
-        alert("I am at the beginning of the comp")
-        return
-    } else if (destination.index === myParent.layers.length && nextOrPrev === "next") {
-        alert("I am at the end of the comp")
-        return
-    }
-    
-
-    // let's look at its neighbour
-    if (nextOrPrev === "prev") {
-        // first look at the layer above this one
-        candidate = myParent.layers[destination.index - 1] as AVLayer
-        if (candidate.inPoint < destination.inPoint) {
-            // it does indeed come before this one
-            target = candidate
-        }
+    if (typeof kbar !== 'undefined' && kbar.button) {
+        gotoBoundary(kbar.button.argument)
     } else {
-        target = myParent.layers[destination.index + 1] as AVLayer
+        gotoBoundary("next")
     }
 
-    const targetComp = target.source as CompItem
+    function gotoBoundary(nextOrPrev: "prev" | "next") {
+        //@include "lib/underscore.js"
 
-    targetComp.openInViewer()
-    if (targetComp.time < 0) {
-        targetComp.time = 0
-    } else if (targetComp.time > targetComp.duration) {
-        targetComp.time = targetComp.duration - targetComp.frameDuration
+        clearOutput()
+        const thisComp = app.project.activeItem as CompItem
+
+        // how many comps does this one belong to?
+        if (thisComp.usedIn.length != 1) {
+            alert("I should have ONE PARENT. I have " + thisComp.usedIn.length)
+            return
+        }
+
+        const myParent = thisComp.usedIn[0]
+
+        // make it into a regular array so I can use underscore
+        let layers: Layer[] = []
+        for (let c = 1; c <= myParent.layers.length; c++) {
+            layers.push(myParent.layers[c])
+        }
+
+        // find the layer
+        let destination = _.find(layers, (layer: AVLayer) => layer.source === thisComp) as AVLayer
+
+        let eligibleLayers: AVLayer[] = _.filter(layers, (layer: AVLayer) => {
+            return !layer.locked && layer.enabled !== false && layer.source.typeName === "Composition"
+        })
+
+        // now sort on inPoint
+        eligibleLayers = _.sortBy(eligibleLayers, (layer: Layer) => layer.inPoint)
+
+        // get index of targetLayer
+        let targetIndex = _.indexOf(eligibleLayers, destination)
+
+        // get the one before or after, depending on the argument
+        nextOrPrev === "next" ? targetIndex++ : targetIndex--
+
+        const targetComp = eligibleLayers[targetIndex].source
+        targetComp.openInViewer()
+        
+        // adjust the time to the boundary
+        if (targetComp.time < 0) {
+            targetComp.time = 0
+        } else if (targetComp.time > targetComp.duration) {
+            targetComp.time = targetComp.duration - targetComp.frameDuration
+        }
     }
 
-})(kbar.button.argument)
+})()

@@ -15,6 +15,12 @@
   // 	],
   // 	"description": "Log output to console"
   // }
+  "writeln": {
+    "prefix": "wl",
+    "scope": "javascript, typescript",
+    "body": ["writeLn(${1:${2:\"$0\"}});"],
+    "description": "writeLn"
+  },
   "Include aescripts": {
     "scope": "javascript,typescript",
     "prefix": "inc",
@@ -41,5 +47,5 @@
       "}"
     ],
     "description": "layer loop"
-  },
+  }
 }
