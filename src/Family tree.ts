@@ -15,7 +15,6 @@ type ancestor = {
         familyTree("save")
     }
 
-
     function familyTree(saveOrRestore: "save" | "restore") {
         //@include "lib/json2.js" 
         clearOutput()
