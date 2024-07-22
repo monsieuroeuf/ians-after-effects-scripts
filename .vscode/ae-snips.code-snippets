@@ -47,5 +47,24 @@
       "}"
     ],
     "description": "layer loop"
+  },
+  "kbar": {
+    "prefix": "kbar",
+    "body": [
+      "declare var kbar: any",
+      "",
+      "(function () {",
+      "    if (typeof kbar !== 'undefined' && kbar.button) {",
+      "        main(kbar.button.argument)",
+      "    } else {",
+      "        main()",
+      "    }",
+      "",
+      "    function main() {",
+      "        ${1:// main}",
+      "    }",
+      "})()"
+    ],
+    "description": "kbar"
   }
 }

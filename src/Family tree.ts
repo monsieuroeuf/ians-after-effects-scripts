@@ -40,8 +40,8 @@ type ancestor = {
                 const currentLayer = layers[c]
                 if (currentLayer.parent !== null) {
                     memo.push({ name: currentLayer.name, layerID: currentLayer.id, parentID: currentLayer.parent.id })
+                    currentLayer.parent = null
                 }
-                currentLayer.parent = null
             }
 
             // save it in the project
@@ -51,13 +51,13 @@ type ancestor = {
         }
 
         function restore() {
-            writeLn("restoring")
             const memo = JSON.parse(app.preferences.getPrefAsString(SECTION, KEY))
             for (let item of memo) {
                 const layer = app.project.layerByID(item.layerID)
                 const parent = app.project.layerByID(item.parentID)
                 layer.parent = parent
             }
+            writeLn("Familytree restored")
 
         }
         // loop through all layers and remember the parents

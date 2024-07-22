@@ -20,7 +20,7 @@
     }
 
     for (let currentLayer of selectedLayers) {
-        currentLayer.property("Position").dimensionsSeparated = true
+        currentLayer.position.dimensionsSeparated = true;
     }
 
 	// look 
