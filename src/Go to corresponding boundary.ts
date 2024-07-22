@@ -2,6 +2,16 @@ declare var kbar: any
 
 (function () {
 
+    /* 
+    The idea here when you're working in a comp, and you want to zap into the
+    next or previous comp in the same parent comp.
+
+    - Designed to be used with Kbar.
+    - Requires underscore.js
+
+    Ian 2024-07-22
+    */
+
     if (typeof kbar !== 'undefined' && kbar.button) {
         gotoBoundary(kbar.button.argument)
     } else {
@@ -46,7 +56,7 @@ declare var kbar: any
 
         const targetComp = eligibleLayers[targetIndex].source
         targetComp.openInViewer()
-        
+
         // adjust the time to the boundary
         if (targetComp.time < 0) {
             targetComp.time = 0
