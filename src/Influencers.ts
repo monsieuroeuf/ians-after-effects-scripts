@@ -1,22 +1,33 @@
+interface Influencer {
+    compID: number,
+    underTheInfluence: boolean,
+    layers: LayerMemo[]
+}
+
+interface LayerMemo {
+    name: string,
+    layerID: number,
+    shy: boolean,
+    enabled: boolean,
+    locked: boolean,
+    solo: boolean,
+}
+
 (function () {
+    clearOutput()
     if (typeof kbar !== 'undefined' && kbar.button) {
-        influencers(kbar.button.argument)
-    } else {
-        influencers()
+        if (kbar.button.argument === "save") {
+            writeLn("forceSave: true")
+            influencers(true)
+            return
+        }
     }
 
-    interface LayerMemo {
-        name: string,
-        layerID: number,
-        shy: boolean,
-        enabled: boolean,
-        locked: boolean,
-        solo: boolean,
-    }
+    influencers(false)
 
-    function influencers(arg?: any) {
+    function influencers(forceSave: boolean) {
+        writeLn("forceSave: " + forceSave.toString())
         //@include "lib/json2.js"
-        clearOutput()
         const comp = app.project.activeItem as CompItem
         const layers = comp.layers
 
@@ -30,15 +41,58 @@
             return
         }
 
+        if (forceSave) {
+            // just save the current state and get out
+            save()
+            return
+        }
+
+        // is this comp under the influence?
+        if (app.settings.haveSetting(SECTION, KEY)) {
+            const influenceMemo: Influencer = JSON.parse(app.settings.getSetting(SECTION, KEY))
+            if (influenceMemo.underTheInfluence) {
+                restore()
+                return
+            }
+        }
+
+        // otherwise – save
+        save()
+        writeLn("did I even get here?")
+        revealTheInfluence()
+
         // if (!comp.selectedLayers.length) {
         //     alert('No layers selected')
         //     return
         // }
 
-        // save()
-        restore()
+        function revealTheInfluence() {
+            writeLn("revealTheInfluence")
+            // shy all the layers
+            for (let c = 1; c <= layers.length; c++) {
+                const currentLayer = layers[c]
+                currentLayer.shy = true
+            }
+
+            // look at the ancestors of the selected layers
+            for (let layer of comp.selectedLayers) {
+                let parent = layer
+                layer.solo = true
+                layer.shy = false
+                layer.locked = false
+                while (parent.parent !== null) {
+                    parent = parent.parent
+                    parent.solo = true
+                    parent.shy = false
+                }
+            }
+
+            comp.hideShyLayers = true
+        }
 
         function save() {
+            writeLn("saving")
+            let influenceMemo: Influencer = null
             let memo: LayerMemo[] = []
 
             for (let c = 1; c <= layers.length; c++) {
@@ -55,31 +109,39 @@
 
                 memo.push(obj)
             }
+            influenceMemo = {
+                compID: comp.id,
+                underTheInfluence: true,
+                layers: memo
+            }
             // alert(JSON.stringify(memo))
-            app.settings.saveSetting(SECTION, KEY, JSON.stringify(memo))
+            app.settings.saveSetting(SECTION, KEY, JSON.stringify(influenceMemo))
             writeLn("saved")
         }
 
         function restore() {
-            if (!app.settings.haveSetting(SECTION, KEY)) {
-                alert('No settings found')
-                return
-            }
+            writeLn("restoring")
 
-            const memo = JSON.parse(app.settings.getSetting(SECTION, KEY))
-            if (memo.length !== layers.length) {
+            const influenceMemo: Influencer = JSON.parse(app.settings.getSetting(SECTION, KEY))
+            if (influenceMemo.layers.length !== layers.length) {
                 alert('Number of layers has changed')
                 return
             }
 
-            for (let obj of memo) {
+            for (let obj of influenceMemo.layers) {
+                writeLn(obj.name)
                 const currentLayer = app.project.layerByID(obj.layerID)
                 currentLayer.enabled = obj.enabled
+                !!currentLayer.enabled && (currentLayer.solo = obj.solo  )
+                // currentLayer.solo = obj.solo
                 currentLayer.locked = obj.locked
                 currentLayer.shy = obj.shy
-                currentLayer.solo = obj.solo
             }
-            writeLn("restored")
+
+            influenceMemo.underTheInfluence = false
+            app.settings.saveSetting(SECTION, KEY, JSON.stringify(influenceMemo))
+            comp.hideShyLayers = false
+            // writeLn("restored")
         }
     }
 })()
