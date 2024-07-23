@@ -1,10 +1,8 @@
-declare var kbar: any
-
 (function () {
 
     /* 
     The idea here when you're working in a comp, and you want to zap into the
-    next or previous comp in the same parent comp.
+    next or previous comp in the same parent comp. Hello, Sibling.
 
     - Designed to be used with Kbar.
     - Requires underscore.js
@@ -13,12 +11,12 @@ declare var kbar: any
     */
 
     if (typeof kbar !== 'undefined' && kbar.button) {
-        gotoBoundary(kbar.button.argument)
+        HelloSibling(kbar.button.argument)
     } else {
-        gotoBoundary("next")
+        HelloSibling("next")
     }
 
-    function gotoBoundary(nextOrPrev: "prev" | "next") {
+    function HelloSibling(nextOrPrev: "prev" | "next") {
         //@include "lib/underscore.js"
 
         clearOutput()
@@ -33,15 +31,15 @@ declare var kbar: any
         const myParent = thisComp.usedIn[0]
 
         // make it into a regular array so I can use underscore
-        let layers: Layer[] = []
+        let parentLayers: Layer[] = []
         for (let c = 1; c <= myParent.layers.length; c++) {
-            layers.push(myParent.layers[c])
+            parentLayers.push(myParent.layers[c])
         }
 
-        // find the layer
-        let destination = _.find(layers, (layer: AVLayer) => layer.source === thisComp) as AVLayer
+        // find thisComp in the parentLayers
+        let thisCompInParent = _.find(parentLayers, (layer: AVLayer) => layer.source === thisComp) as AVLayer
 
-        let eligibleLayers: AVLayer[] = _.filter(layers, (layer: AVLayer) => {
+        let eligibleLayers: AVLayer[] = _.filter(parentLayers, (layer: AVLayer) => {
             return !layer.locked && layer.enabled !== false && layer.source.typeName === "Composition"
         })
 
@@ -49,20 +47,23 @@ declare var kbar: any
         eligibleLayers = _.sortBy(eligibleLayers, (layer: Layer) => layer.inPoint)
 
         // get index of targetLayer
-        let targetIndex = _.indexOf(eligibleLayers, destination)
+        let targetIndex = _.indexOf(eligibleLayers, thisCompInParent)
 
         // get the one before or after, depending on the argument
-        nextOrPrev === "next" ? targetIndex++ : targetIndex--
+        nextOrPrev === "prev" ? targetIndex-- : targetIndex++
+
+        // adjust the time to the boundary
+        // attempt to leverage "synchronised time" in the parent comp
+        if (nextOrPrev === "prev") {
+            myParent.time = thisCompInParent.inPoint - 1 / myParent.frameRate
+        } else {
+            myParent.time = thisCompInParent.outPoint
+        }
 
         const targetComp = eligibleLayers[targetIndex].source
         targetComp.openInViewer()
 
-        // adjust the time to the boundary
-        if (targetComp.time < 0) {
-            targetComp.time = 0
-        } else if (targetComp.time > targetComp.duration) {
-            targetComp.time = targetComp.duration - targetComp.frameDuration
-        }
+
     }
 
 })()
