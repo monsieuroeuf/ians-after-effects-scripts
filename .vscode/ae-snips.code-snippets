@@ -48,28 +48,5 @@
     ],
     "description": "layer loop"
   },
-  "kbar": {
-  "prefix": "kbar",
-  "body": [
-    "(function () {",
-    "    if (typeof kbar !== 'undefined' && kbar.button) {",
-    "        $1(kbar.button.argument)",
-    "    } else {",
-    "        $1()",
-    "    }",
-    "",
-    "    function ${1:main}(arg:any) {",
-    "        // $1",
-    "        clearOutput()",
-    "        app.beginUndoGroup(\"$1\")",
-    "",
-    "        const project = app.project",
-    "        const comp = project.activeItem as CompItem",
-    "",
-    "        $2",
-    "    }",
-    "})()"
-  ],
-  "description": "kbar"
-}
+  
 }
