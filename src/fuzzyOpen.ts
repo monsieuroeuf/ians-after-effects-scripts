@@ -6,8 +6,8 @@
 
 (function fuzzyOpen() {
 	//@include "./lib/aequery.js"
-	//@include "./listComps.js"
-	//@include "./lib/IanLib.js"
+	//@include "./listComps.jsx"
+	//@include "./lib/IanLib.jsx"
 
 	clearOutput()
 
