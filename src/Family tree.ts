@@ -1,11 +1,32 @@
-declare var kbar: any
+/* 
+Family Tree for After Effects
+
+This script is designed to temporarily isolate layers in a comp.
+
+It remembers all the parenting in the current comp, then hides all the layers
+except the selected ones and their parents – so you can see what they're being
+influenced by.
+
+I wired this up to kbar, so the default action is to save the current state.
+Then make a new button that is activated using a modifier (I use the command
+key) that will restore the state.
+
+*/
 
 // define an object to hold the family tree
-type ancestor = {
-    name: string,
-    layerID: number,
-    parentID: number
+type FamilyTree = {
+    compID: string,
+    compName: string,
+    compTime: number,
+    memo: Ancestor[]
 }
+
+type Ancestor = {
+    layerID: number,
+    parentID: number,
+    name: string
+}
+
 
 (function () {
 
@@ -21,20 +42,26 @@ type ancestor = {
 
         app.beginUndoGroup("Family Tree")
 
-        const SECTION = "com.ianhaigh"
+        const SECTION = "com.ianhaigh.familytree"
         const KEY = "FamilyTree"
 
         const thisComp = app.project.activeItem as CompItem
         const layers = thisComp.layers
 
         if (saveOrRestore === "save") {
-            save()
+            saveState()
         } else {
-            restore()
+            restoreState()
         }
 
-        function save() {
-            let memo: ancestor[] = []
+        function saveState() {
+            let tree: FamilyTree = {
+                compID: thisComp.id.toString(),
+                compName: thisComp.name,
+                compTime: thisComp.time,
+                memo: []
+            }
+            let memo: Ancestor[] = []
             for (let c = 1; c <= layers.length; c++) {
                 const currentLayer = layers[c]
                 if (currentLayer.parent !== null) {
@@ -43,14 +70,27 @@ type ancestor = {
                 }
             }
 
+            tree.memo = memo
+
             // save it in the project
-            app.preferences.savePrefAsString(SECTION, KEY, JSON.stringify(memo))
+            app.preferences.savePrefAsString(SECTION, KEY, JSON.stringify(tree))
             writeLn("Familytree saved")
 
         }
 
-        function restore() {
-            const memo = JSON.parse(app.preferences.getPrefAsString(SECTION, KEY))
+        function restoreState() {
+            writeLn("restoreState");
+            const tree:FamilyTree = JSON.parse(app.preferences.getPrefAsString(SECTION, KEY))
+            // alert(JSON.stringify(tree))
+            const memo = tree.memo
+
+            if (typeof memo === 'undefined') {
+                writeLn("No family tree found")
+                return
+            }
+
+            thisComp.time = tree.compTime
+
             for (let item of memo) {
                 const layer = app.project.layerByID(item.layerID)
                 const parent = app.project.layerByID(item.parentID)
