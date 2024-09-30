@@ -40,7 +40,8 @@
         let thisCompInParent = _.find(parentLayers, (layer: AVLayer) => layer.source === thisComp) as AVLayer
 
         let eligibleLayers: AVLayer[] = _.filter(parentLayers, (layer: AVLayer) => {
-            return !layer.locked && layer.enabled !== false && layer.source.typeName === "Composition"
+            if (layer.locked || layer.enabled === false) return false
+            if (layer.source && layer.source.typeName === "Composition") return true
         })
 
         // now sort on inPoint

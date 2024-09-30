@@ -1,8 +1,8 @@
 // writeLn("reading kbar");
-// if (typeof kbar !== undefined && kbar.button) {
-    // writeLn("reading kbar");
-    // writeLn("kbar: " + kbar.button.argument);
-// }
+if (kbar.button) {
+    writeLn("reading kbar");
+    writeLn("kbar: " + kbar.button.argument);
+}
 
 // writeLn($.global.banana.arg);
 // writeLn($.stack);
@@ -10,5 +10,6 @@
 // writeLn($.colorPicker())
 
 writeLn("argumentative: " + $.getenv("argumentative"));
+
 // alert("argumentative: " + $.getenv("argumentative"));
 // writeLn("filename: " + $.fileName)

@@ -1,3 +1,12 @@
+/* 
+Influencers for After Effects
+
+Select a layer and run this script – it will solo the layer's ancestors so you can focus on what has influence.
+
+It works as a toggle. Hold down command to force-save/reset the state for the current comp.
+
+Ian
+*/
 interface Influencer {
     compID: number,
     underTheInfluence: boolean,
@@ -26,6 +35,9 @@ interface LayerMemo {
     influencers(false)
 
     function influencers(forceSave: boolean) {
+        /* 
+        Main function
+        */
         writeLn("forceSave: " + forceSave.toString())
         //@include "lib/json2.js"
         const comp = app.project.activeItem as CompItem
@@ -43,7 +55,7 @@ interface LayerMemo {
 
         if (forceSave) {
             // just save the current state and get out
-            save()
+            saveState()
             return
         }
 
@@ -51,14 +63,13 @@ interface LayerMemo {
         if (app.settings.haveSetting(SECTION, KEY)) {
             const influenceMemo: Influencer = JSON.parse(app.settings.getSetting(SECTION, KEY))
             if (influenceMemo.underTheInfluence) {
-                restore()
+                restoreState()
                 return
             }
         }
 
         // otherwise – save
-        save()
-        writeLn("did I even get here?")
+        saveState()
         revealTheInfluence()
 
         // if (!comp.selectedLayers.length) {
@@ -67,7 +78,7 @@ interface LayerMemo {
         // }
 
         function revealTheInfluence() {
-            writeLn("revealTheInfluence")
+            // writeLn("revealTheInfluence")
             // shy all the layers
             for (let c = 1; c <= layers.length; c++) {
                 const currentLayer = layers[c]
@@ -90,8 +101,11 @@ interface LayerMemo {
             comp.hideShyLayers = true
         }
 
-        function save() {
-            writeLn("saving")
+        function saveState() {
+            /* 
+            Using the current comp, save the state of all the layers
+            */
+            writeLn("Saving state of Influencers")
             let influenceMemo: Influencer = null
             let memo: LayerMemo[] = []
 
@@ -119,20 +133,22 @@ interface LayerMemo {
             writeLn("saved")
         }
 
-        function restore() {
-            writeLn("restoring")
+        function restoreState() {
+            /* 
+            Restore the state of the layers
+            */
 
             const influenceMemo: Influencer = JSON.parse(app.settings.getSetting(SECTION, KEY))
             if (influenceMemo.layers.length !== layers.length) {
-                alert('Number of layers has changed')
+                alert('Number of layers has changed! Abort abort')
                 return
             }
 
             for (let obj of influenceMemo.layers) {
-                writeLn(obj.name)
+                // writeLn(obj.name)
                 const currentLayer = app.project.layerByID(obj.layerID)
                 currentLayer.enabled = obj.enabled
-                !!currentLayer.enabled && (currentLayer.solo = obj.solo  )
+                !!currentLayer.enabled && (currentLayer.solo = obj.solo)
                 // currentLayer.solo = obj.solo
                 currentLayer.locked = obj.locked
                 currentLayer.shy = obj.shy
