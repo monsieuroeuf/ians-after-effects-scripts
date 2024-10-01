@@ -1,10 +1,13 @@
 //@target aftereffects
 
-declare var JSON               : any
-declare var FUZZYOPEN_LISTCOMPS: any
+// biome-ignore lint/suspicious/noShadowRestrictedNames: <explanation>
+// biome-ignore lint/suspicious/noExplicitAny: <explanation>
+declare let JSON               : any
+// biome-ignore lint/suspicious/noExplicitAny: <explanation>
+declare let FUZZYOPEN_LISTCOMPS: any
 
 // declare LISTCOMPS at the top level so that it's available to other scripts
-if (typeof FUZZYOPEN_LISTCOMPS !== "object") { 
+if (typeof FUZZYOPEN_LISTCOMPS !== "object") {
 	FUZZYOPEN_LISTCOMPS = {}
 }
 
@@ -18,30 +21,29 @@ if (typeof FUZZYOPEN_LISTCOMPS !== "object") {
 	//@include "./lib/aequery.js"
 	//@include "./lib/json2.js"
 	//@include "./lib/IanLib.jsx"
-	
+
 	const DEBUGGING = true
-	
-	
-	const writeFuzzyJSON = function () {
+
+
+	const writeFuzzyJSON = () => {
 		const fuzzyFile = IanLib.getFuzzyCompsFile()
-		
+
 		fuzzyFile.lineFeed = "Unix"
 		fuzzyFile.open("w")
-		
-		let allComps = aeq.getCompositions()
-		
-		let results = []
-		
-		// make an array of objects with the name and id of each comp
-		for (var c = 0; c < allComps.length; c++) {
-			let obj: Record<string, any> = {}
 
-			var current = allComps[c] as CompItem
-			obj.name = current.name
-			obj.id = current.id
+		const allComps = aeq.getCompositions()
+
+		const results = []
+
+		// make an array of objects with the name and id of each comp
+		for (let c = 0; c < allComps.length; c++) {
+			const current = allComps[c] as CompItem
+			const obj = {
+				name: current.name,
+				id: current.id
+			}
 			results.push(obj)
 		}
-
 		// pretty print the JSON
 		fuzzyFile.write(JSON.stringify(results, null, "\t"))
 		fuzzyFile.close()
@@ -57,5 +59,5 @@ if (typeof FUZZYOPEN_LISTCOMPS !== "object") {
 		}
 	}
 
-})();
+})()
 FUZZYOPEN_LISTCOMPS.update()

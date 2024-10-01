@@ -1,3 +1,4 @@
+// biome-ignore lint/complexity/noStaticOnlyClass: <explanation>
 class IanLib {
     private static readonly SECTION_NAME       = "com.ianhaigh.aescripts"
     private static readonly FUZZY_COMPS_FILE   = "fuzzyComps.txt"
@@ -5,12 +6,13 @@ class IanLib {
 
 
     static getSectionName() {
-        return this.SECTION_NAME
+        return IanLib.SECTION_NAME
     }
 
     // Get a path to the user's settings folder 
     static getSettingsFolderPath(): string {
-        const path = Folder.userData.fsName + "/" + this.getSectionName()
+        // biome-ignore lint/style/useTemplate: <explanation>
+        const path = Folder.userData.fsName + "/" + IanLib.getSectionName()
 
         if (!File(path).exists) {
             if (!Folder(path).create()) {
@@ -22,27 +24,29 @@ class IanLib {
 
     // Get a file object pointing to fuzzyOpen JSON
     static getFuzzyOpenFile(): File {
-        return new File(this.getSettingsFolderPath() + "/" + this.FUZZY_FILE_TO_OPEN)
+        // biome-ignore lint/style/useTemplate: <explanation>
+        return new File(IanLib.getSettingsFolderPath() + "/" + IanLib.FUZZY_FILE_TO_OPEN)
     }
 
     // Get a file object pointing to fuzzyComps JSON
     static getFuzzyCompsFile(): File {
-        return new File(this.getSettingsFolderPath() + "/" + this.FUZZY_COMPS_FILE)
+        // biome-ignore lint/style/useTemplate: <explanation>
+        return new File(IanLib.getSettingsFolderPath() + "/" + IanLib.FUZZY_COMPS_FILE)
     }
 
     // Retrieve an AE preference. If it doesn't exist, create it with a blank value
     static getPref(keyName: string) {
         // is the setting defined?
-        if (!app.settings.haveSetting(this.getSectionName(), keyName)) {
+        if (!app.settings.haveSetting(IanLib.getSectionName(), keyName)) {
             // if not, define it
-            app.settings.saveSetting(this.getSectionName(), keyName, "")
+            app.settings.saveSetting(IanLib.getSectionName(), keyName, "")
         }
 
-        return app.settings.getSetting(this.getSectionName(), keyName)
+        return app.settings.getSetting(IanLib.getSectionName(), keyName)
     }
 
     // Set an AE preference.
     static setPref(keyName: string, value: string) {
-        app.settings.saveSetting(this.getSectionName(), keyName, value)
+        app.settings.saveSetting(IanLib.getSectionName(), keyName, value)
     }
 }

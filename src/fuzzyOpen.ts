@@ -18,11 +18,12 @@
 
 	fuzzyFileToOpen.open("r")
 	const compID = fuzzyFileToOpen.readln()
+	// biome-ignore lint/style/useNumberNamespace: <explanation>
 	const compIDNum = parseInt(compID)
 
 	fuzzyFileToOpen.close()
 
-	let compToOpen = app.project.itemByID(compIDNum) as CompItem
+	const compToOpen = app.project.itemByID(compIDNum) as CompItem
 	if (compToOpen) {
 		writeLn(`Yep: ${compToOpen.name}`)
 	} else {
