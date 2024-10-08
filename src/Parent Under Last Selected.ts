@@ -13,13 +13,14 @@
 	const selectedLayers = aeq.getSelectedLayers()
 
 	// this is the last layer that you've selected
-	let lastSelected = selectedLayers.pop()
+	const lastSelected = selectedLayers.pop()
 
 	// if it's in an existing hierarchy, take it out
 	lastSelected.parent = null
 
 	// re-parent 
-	selectedLayers.forEach((currentLayer: Layer) => {
+	// biome-ignore lint/complexity/noForEach: <explanation>
+		selectedLayers.forEach((currentLayer: Layer) => {
 		if (currentLayer.parent) {
 			// if currentLayer parent is one of the selected layers, then leave it alone
 			if (selectedLayers.indexOf(currentLayer.parent) !== -1) return

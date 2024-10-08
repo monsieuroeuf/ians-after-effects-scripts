@@ -28,7 +28,7 @@ type Ancestor = {
 }
 
 
-(function () {
+(function familyTree() {
 
     if (typeof kbar !== 'undefined' && kbar.button) {
         familyTree(kbar.button.argument)
@@ -79,8 +79,8 @@ type Ancestor = {
         }
 
         function restoreState() {
-            writeLn("restoreState");
-            const tree:FamilyTree = JSON.parse(app.preferences.getPrefAsString(SECTION, KEY))
+            writeLn("restoreState")
+            const tree: FamilyTree = JSON.parse(app.preferences.getPrefAsString(SECTION, KEY))
             // alert(JSON.stringify(tree))
             const memo = tree.memo
 

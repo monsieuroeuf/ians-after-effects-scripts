@@ -1,6 +1,12 @@
 //@target aftereffects
 
-(function separatePositions() {
+(function addXKeyframe() {
+    type PropType = "X Position" | "Y Position"
+    let myProp: PropType = ("X Position")
+
+    if ($.getenv("argumentative") === "y") {
+        myProp = "Y Position"
+    }
 
     const proj = app.project.activeItem
     if (proj === null || !(proj instanceof CompItem)) {
@@ -16,6 +22,8 @@
 
     for (const currentLayer of selectedLayers) {
         currentLayer.position.dimensionsSeparated = true
+        const theProp = currentLayer.property("Transform").property(myProp) as Property
+        theProp.setValueAtTime(proj.time, theProp.value)
     }
 
 })()
