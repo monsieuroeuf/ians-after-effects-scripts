@@ -6,7 +6,7 @@
 	"dependencies": {
 		"aequery": "github:monsieuroeuf/aequery",
 		"chokidar": "^3.6.0",
-		"types-for-adobe": "github:docsforadobe/Types-for-Adobe"
+		"types-for-adobe": "git+https://github.com/monsieuroeuf/Types-for-Adobe#dev"
 	},
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1",
