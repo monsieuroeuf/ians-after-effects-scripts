@@ -9,9 +9,9 @@
 
     app.beginUndoGroup("Hyphenate")
 
-    for (let currentItem of selection) {
-        let oldName = currentItem.name
-        let newName = oldName.replace(/ /g, '-')
+    for (const currentItem of selection) {
+        const oldName = currentItem.name
+        const newName = oldName.replace(/ /g, '-')
         currentItem.name = newName
     }
 })()
