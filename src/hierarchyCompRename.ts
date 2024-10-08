@@ -36,11 +36,15 @@ In theory.
         return
     }
 
-    function descend(folder: FolderItem, prefix:string) {
-        
-        for (let i=1; i<=folder.numItems; i++) {
+    function descend(folder: FolderItem, prefix: string) {
+
+        for (let i = 1; i <= folder.numItems; i++) {
             const currentItem = folder.item(i)
             if (currentItem instanceof FolderItem) {
+                // skip if it starts with underscore
+                if (currentItem.name.slice(0, 1) === "_") {
+                    continue
+                }
                 descend(currentItem, `${prefix}/${currentItem.name}`)
             } else {
                 // rename the item
