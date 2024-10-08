@@ -1,6 +1,6 @@
-declare var kbar: any
+// declare var kbar: any
 
-(function () {
+(function oneBeautifulGuide() {
     if (typeof kbar !== 'undefined' && kbar.button) {
         main(kbar.button.argument)
     } else {
@@ -27,11 +27,11 @@ declare var kbar: any
             defaultGuideTxt = `0 ${comp.height / 2}`
         }
 
-        let ans = prompt("0:horizontal, 1:vertical", defaultGuideTxt, "One beautiful guide")
+        const ans = prompt("0:horizontal, 1:vertical", defaultGuideTxt, "One beautiful guide")
         if (ans !== null) {
             writeLn("saving settings")
             app.settings.saveSetting(SECTION, KEY, ans)
-            let [direction, position] = ans.split(" ").map(Number)
+            const [direction, position] = ans.split(" ").map(Number)
             if (direction === 0) {
                 // horizontal
                 comp.addGuide(0, position)

@@ -12,12 +12,12 @@
 
 	const selectedLayers = aeq.getSelectedLayers();
 
-	let thisComp = app.project.activeItem as CompItem
+	const thisComp = app.project.activeItem as CompItem
 
 	// keep track of the new nulls so we can select them all at the end
-	let newNullArray: Layer[] = []
+	const newNullArray: Layer[] = []
 
-	for (let current of selectedLayers) {
+	for (const current of selectedLayers) {
 		const newNull = thisComp.layers.addNull()
 		newNullArray.push(newNull)
 
@@ -33,7 +33,7 @@
 	}
 
 	// select all the new nulls
-	for (let layer of newNullArray) {
+	for (const layer of newNullArray) {
 		layer.selected = true
 	}
 })()

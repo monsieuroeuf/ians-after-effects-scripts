@@ -22,7 +22,7 @@ interface LayerMemo {
     solo: boolean,
 }
 
-(function () {
+(function influencers() {
     clearOutput()
     if (typeof kbar !== 'undefined' && kbar.button) {
         if (kbar.button.argument === "save") {
@@ -38,7 +38,7 @@ interface LayerMemo {
         /* 
         Main function
         */
-        writeLn("forceSave: " + forceSave.toString())
+        writeLn(`forceSave: ${forceSave.toString()}`)
         //@include "lib/json2.js"
         const comp = app.project.activeItem as CompItem
         const layers = comp.layers
@@ -86,7 +86,7 @@ interface LayerMemo {
             }
 
             // look at the ancestors of the selected layers
-            for (let layer of comp.selectedLayers) {
+            for (const layer of comp.selectedLayers) {
                 let parent = layer
                 layer.solo = true
                 layer.shy = false
@@ -107,7 +107,7 @@ interface LayerMemo {
             */
             writeLn("Saving state of Influencers")
             let influenceMemo: Influencer = null
-            let memo: LayerMemo[] = []
+            const memo: LayerMemo[] = []
 
             for (let c = 1; c <= layers.length; c++) {
                 const currentLayer = layers[c]
@@ -144,7 +144,7 @@ interface LayerMemo {
                 return
             }
 
-            for (let obj of influenceMemo.layers) {
+            for (const obj of influenceMemo.layers) {
                 // writeLn(obj.name)
                 const currentLayer = app.project.layerByID(obj.layerID)
                 currentLayer.enabled = obj.enabled

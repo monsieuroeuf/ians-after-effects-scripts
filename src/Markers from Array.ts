@@ -4,13 +4,13 @@
     const markers = [76, 169, 206, 243, 356, 491, 611, 731, 851, 930, 1060, 1194, 1308]
 	app.beginUndoGroup("Markers from Array")
 
-	let comp = app.project.activeItem as CompItem
+	const comp = app.project.activeItem as CompItem
     // alert(comp.name)
     // comp.setGuide(100, 2)
 
     const one = new MarkerValue("")
     // comp.frameRate
-    for (let m of markers) {
+    for (const m of markers) {
         // comp.markerProperty.setValueAtTime(m / comp.frameRate, one) 
         comp.time = m / comp.frameRate
         app.executeCommand(2158) // split layer

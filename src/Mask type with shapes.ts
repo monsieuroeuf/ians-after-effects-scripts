@@ -19,6 +19,7 @@
 	let shapeArray: Layer[] = []
 	let textArray: ShapeLayer[] = []
 
+	// biome-ignore lint/complexity/noForEach: <explanation>
 	selectedLayers.forEach(layer => {
 		if (layer instanceof TextLayer) {
 			textArray.push(layer)

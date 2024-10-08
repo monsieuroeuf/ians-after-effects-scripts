@@ -32,7 +32,7 @@
 
     if (myComp != null && (myComp instanceof CompItem)) {
         app.beginUndoGroup(undoStr)
-        for (let currentLayer of myComp.selectedLayers) {
+        for (const currentLayer of myComp.selectedLayers) {
             if (defaultLogic) {
                 currentLayer.startTime = currentLayer.inPoint
             } else {

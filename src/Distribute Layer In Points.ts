@@ -14,9 +14,9 @@
 		const KEY_NAME = "distributeLayerInPoints"
 
 		let defaultAmt = IanLib.getPref(KEY_NAME)
-		if (defaultAmt == "") defaultAmt = "5"
+		if (defaultAmt === "") defaultAmt = "5"
 
-		var amt = prompt("Frames between inPoints?", defaultAmt)
+		const amt = prompt("Frames between inPoints?", defaultAmt)
 		if (amt == null) {
 			write("User cancelled.")
 			return
@@ -27,12 +27,12 @@
 		const thisComp = app.project.activeItem as CompItem
 		const thisFPS  = thisComp.frameRate
 
-		let durationToDistribute = currentFormatToTime(amt, thisFPS, true)
+		const durationToDistribute = currentFormatToTime(amt, thisFPS, true)
 
 		// uncomment if you prefer seconds
 		// durationToDistribute *= thisFPS
 
-		var selectedLayers = thisComp.selectedLayers
+		const selectedLayers = thisComp.selectedLayers
 
 		selectedLayers.sort((a, b) => {
 			return b.index - a.index
@@ -41,7 +41,7 @@
 		app.beginUndoGroup("Distribute in points")
 
 		// var beginTime = selectedLayers[0].startTime
-		var beginTime = thisComp.time
+		const beginTime = thisComp.time
 		for (let c = 0; c < selectedLayers.length; c++) {
 			selectedLayers[c].startTime = durationToDistribute * c + beginTime
 		}

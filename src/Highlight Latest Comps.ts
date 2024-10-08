@@ -1,5 +1,6 @@
 //@target aftereffects
 
+// biome-ignore lint/suspicious/noExplicitAny: <explanation>
 declare const _: any
 
 /**

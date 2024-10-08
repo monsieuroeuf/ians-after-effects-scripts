@@ -6,7 +6,7 @@
 
 (function listLayers() {
 	//@include "./lib/aequery.js"
-	app.beginUndoGroup("List comps");
+	app.beginUndoGroup("List comps")
 
 	const DEST = '/Users/ian/tmp/ae/layers.out.txt'
 
@@ -15,12 +15,12 @@
 
 	f.open("w")
 
-	let thisComp = app.project.activeItem as CompItem
+	const thisComp = app.project.activeItem as CompItem
 
-	for (var c = 1; c <= thisComp.layers.length; c++) {
-		let currentLayer = thisComp.layers[c]
+	for (let c = 1; c <= thisComp.layers.length; c++) {
+		const currentLayer = thisComp.layers[c]
 		f.writeln(currentLayer.name)
 		writeLn(currentLayer.name)
 	}
 	f.close()
-})();
+})()

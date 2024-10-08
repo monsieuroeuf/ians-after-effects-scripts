@@ -1,4 +1,4 @@
-(function () {
+(function helloSibling() {
 
     /* 
     The idea here when you're working in a comp, and you want to zap into the
@@ -23,21 +23,21 @@
         const thisComp = app.project.activeItem as CompItem
 
         // how many comps does this one belong to?
-        if (thisComp.usedIn.length != 1) {
-            alert("I should have ONE PARENT. I have " + thisComp.usedIn.length)
+        if (thisComp.usedIn.length !== 1) {
+            alert(`I should have ONE PARENT. I have ${thisComp.usedIn.length}`)
             return
         }
 
         const myParent = thisComp.usedIn[0]
 
         // make it into a regular array so I can use underscore
-        let parentLayers: Layer[] = []
+        const parentLayers: Layer[] = []
         for (let c = 1; c <= myParent.layers.length; c++) {
             parentLayers.push(myParent.layers[c])
         }
 
         // find thisComp in the parentLayers
-        let thisCompInParent = _.find(parentLayers, (layer: AVLayer) => layer.source === thisComp) as AVLayer
+        const thisCompInParent = _.find(parentLayers, (layer: AVLayer) => layer.source === thisComp) as AVLayer
 
         let eligibleLayers: AVLayer[] = _.filter(parentLayers, (layer: AVLayer) => {
             if (layer.locked || layer.enabled === false) return false
