@@ -3,6 +3,7 @@
 *.swp
 node_modules
 dist
+ae-scripts-dist
 package-lock.json
 pnpm-lock.yaml
 readme.md

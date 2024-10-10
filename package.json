@@ -10,9 +10,9 @@
 	},
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1",
-		"build": "tsc -p .",
+		"build": "tsc -p . && node copy-lib.js",
 		"watch": "concurrently \"tsc -p . --watch\" \"node rename.js\"",
-		"clean": "rimraf ./dist && tsc -p . && npm run copy-lib",
+		"clean": "rimraf ./ae-scripts-dist && tsc -p . && npm run build",
 		"docs": "documentation build dist/*js -f md -o readme.md",
 		"copy-lib": "node scripts/copy-lib.js"
 	},

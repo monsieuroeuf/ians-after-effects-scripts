@@ -3,7 +3,7 @@
     "allowJs": true,
     "target": "ES5",
     "noLib": true,
-    "outDir": "dist",
+    "outDir": "ae-scripts-dist",
     // "lib": ["ES5"],
     // "inlineSourceMap": true,
     "types": [
@@ -14,7 +14,7 @@
   },
   "exclude": [
     "node_modules",
-    "dist",
+    "ae-scripts-dist",
     "lib",
     "**/*.js"
   ]

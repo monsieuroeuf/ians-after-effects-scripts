@@ -1,9 +1,7 @@
 //@target aftereffects
 
 /**
- * Creates nulls at the same position as the selected layers, and parents them
- * to each. Also moves each null to be directly above the layer it's parented
- * to, and inherits its label.
+ * TODO: description
 */
 
 (function maskTypeWithShapes() {
@@ -30,8 +28,8 @@
 	})
 
 	// sort each array by layer name
-	shapeArray = _.sortBy(shapeArray, layer => layer.name)
-	textArray = _.sortBy(textArray, layer => layer.name)
+	shapeArray = _.sortBy(shapeArray, (tmp:Layer) => tmp.name)
+	textArray = _.sortBy(textArray, (tmp:Layer) => tmp.name)
 
 	if (textArray.length !== shapeArray.length) {
 		alert("Please select an equal number of text layers and nulls.")
@@ -39,17 +37,10 @@
 	}
 
 	// loop through the text layers
-	for (let i=0; i<textArray.length; i++) {
+	for (let i = 0; i < textArray.length; i++) {
 		const currentTextLayer = textArray[i]
 		const currentShapeLayer = shapeArray[i] as AVLayer
 		currentTextLayer.setTrackMatte(currentShapeLayer, TrackMatteType.ALPHA)
 	}
-
-
-
-
-
-	// alert(textArray.length.toString())
-
 
 })()
