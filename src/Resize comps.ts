@@ -15,7 +15,7 @@
         return
     }
 
-    for (let currentComp of selectedComps) {
+    for (const currentComp of selectedComps) {
         if (!(currentComp instanceof CompItem)) {
             continue
         }
