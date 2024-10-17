@@ -13,11 +13,12 @@
 	const allKeys     = aeq.getKeys(selProps)
 	const currentTime = comp.time
 
-	aeq.forEach(allKeys, (currentKey: any) => {
+	aeq.forEach(allKeys, (currentKey: AEQKey) => {
 		if (currentKey.time() > currentTime) {
 			currentKey.selected(true)
 		} else {
 			currentKey.selected(false)
 		}
 	})
+	
 })()
