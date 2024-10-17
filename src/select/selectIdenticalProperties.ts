@@ -35,8 +35,8 @@
 		toString = () => {
 			let result = ""
 			this.propHierarchyAry.reverse()
-			aeq.forEach(this.propHierarchyAry, function (item: Property) {
-				result += item.name + ", "
+			aeq.forEach(this.propHierarchyAry, (item: Property) => {
+				result += `${item.name}, `
 			})
 			this.propHierarchyAry.reverse()
 			return result
@@ -46,8 +46,8 @@
 			// loop thru the array, wrapping each prop in property("x")
 			// I don't think I can use Array.map due to AE's old version of js?
 
-			var result = []
-			aeq.forEach(this.propHierarchyAry, function (item: Property) {
+			const result = []
+			aeq.forEach(this.propHierarchyAry, (item: Property) => {
 				// result.push("property(\"" + item.name + "\")")
 				result.push(`property("${item.name}")`)
 			})
@@ -56,15 +56,16 @@
 	}
 
 	// start here
-	var comp = aeq.getActiveComposition()
-	var propertyBankAry = []
+	app.beginUndoGroup("Select Identical Properties")
+	const comp = aeq.getActiveComposition()
+	const propertyBankAry = []
 
-	aeq.forEach(aeq.getSelectedProperties(comp), function (prop: Property) {
+	aeq.forEach(aeq.getSelectedProperties(comp), (prop: Property) => {
 		// loop through all the selected properties
-		var currentProp = prop
+		const currentProp = prop
 
 		// create a new object for each selected property
-		var currentPropertyBank = new PropertyBank(currentProp)
+		const currentPropertyBank = new PropertyBank(currentProp)
 
 		let parentGroup = currentProp.parentProperty
 
@@ -85,7 +86,8 @@
 		aeq.forEach(propertyBankAry, (prop: PropertyBank) => {
 			// some are hidden by default, so we'll just ignore the ones that can't be selected
 			try {
-				var propSpec = eval("layer." + prop.makePropertySpec())
+				// biome-ignore lint/security/noGlobalEval: <explanation>
+				const propSpec = eval(`layer.${prop.makePropertySpec()}`)
 				propSpec.selected = true
 
 			} catch (e) { }
