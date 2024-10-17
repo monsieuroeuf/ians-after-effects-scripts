@@ -6,7 +6,7 @@
  */
 
 (function selectRelated() {
-	//@include "./lib/aequery.js"
+	//@include "../lib/aequery.js"
 	app.beginUndoGroup("Select related")
 
 	const selectedLayers = aeq.getSelectedLayers()

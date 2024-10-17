@@ -14,7 +14,7 @@
  */
 
 (function selectIdenticalProperties() {
-	//@include "./lib/aequery.js"; 
+	//@include "../lib/aequery.js"; 
 
 	/**
 	 * @hidden
