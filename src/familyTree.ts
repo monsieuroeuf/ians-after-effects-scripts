@@ -32,6 +32,8 @@ type Ancestor = {
 
     if (typeof kbar !== 'undefined' && kbar.button) {
         familyTree(kbar.button.argument)
+    } else if ($.getenv("argumentative") === "restore") {
+        familyTree("restore")
     } else {
         familyTree("save")
     }
