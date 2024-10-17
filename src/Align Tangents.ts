@@ -1,36 +1,36 @@
 ﻿// This script aligns the tangents between two selected keyframes in Adobe After Effects to have identical angles
 // Ensure two keyframes are selected before running the script
 
-(function () {
+(function alignTangents() {
 
 	const minimumInfluence = 0.1
 
-	var comp = app.project.activeItem // Get the active composition
+	const comp = app.project.activeItem // Get the active composition
 	if (comp && comp instanceof CompItem) {
-		var selectedLayers = comp.selectedLayers
+		const selectedLayers = comp.selectedLayers
 
 		if (selectedLayers.length > 0) {
 			app.beginUndoGroup("Align Tangents")
 
-			for (var i = 0; i < selectedLayers.length; i++) {
-				var layer = selectedLayers[i]
-				var selectedProperties = layer.selectedProperties
+			for (let i = 0; i < selectedLayers.length; i++) {
+				const layer = selectedLayers[i]
+				const selectedProperties = layer.selectedProperties
 
-				for (var j = 0; j < selectedProperties.length; j++) {
-					var property = selectedProperties[j] as Property
+				for (let j = 0; j < selectedProperties.length; j++) {
+					const property = selectedProperties[j] as Property
 
 					// alert(property.name);
-					var keyTimes = []
-					var selectedKeys = []
+					const keyTimes:number[] = []
+					const selectedKeys = []
 
-					for (var k = 1; k <= property.numKeys; k++) {
+					for (let k = 1; k <= property.numKeys; k++) {
 						if (property.keySelected(k)) {
 							selectedKeys.push(k)
 							keyTimes.push(property.keyTime(k))
 						}
 					}
 
-					if (selectedKeys.length == 2) {
+					if (selectedKeys.length === 2) {
 						const key1 = selectedKeys[0]
 						const key2 = selectedKeys[1]
 
@@ -50,7 +50,7 @@
 
 						const defaultInfluence = 33.3
 
-						let storeInfluence = []
+						const storeInfluence = []
 
 						let inInfluence = 33.3 // Default influence value
 						let outInfluence = 33.3 // Default influence value
@@ -58,19 +58,20 @@
 						const speed = valueDiff / timeDiff
 
 						// store the influences
-						for (let key of [key1, key2]) {
-							let obj = {}
+						for (const key of [key1, key2]) {
+							type influenceObj = {in:number, out:number}
+							let obj:influenceObj
 							const inTemp = property.keyInTemporalEase(key) as KeyframeEase[]
 							const outTemp = property.keyOutTemporalEase(key) as KeyframeEase[]
 
 							let inInfluence = inTemp[0].influence
 							let outInfluence = outTemp[0].influence
 
-							if (inInfluence == 0) { inInfluence = minimumInfluence }
-							if (outInfluence == 0) { outInfluence = minimumInfluence }
+							if (inInfluence === 0) { inInfluence = minimumInfluence }
+							if (outInfluence === 0) { outInfluence = minimumInfluence }
 
-							obj['in'] = inTemp.length > 0 ? inInfluence : defaultInfluence
-							obj['out'] = outTemp.length > 0 ? outInfluence : defaultInfluence
+							obj.in = inTemp.length > 0 ? inInfluence : defaultInfluence
+							obj.out = outTemp.length > 0 ? outInfluence : defaultInfluence
 
 							storeInfluence.push(obj)
 						}
@@ -78,8 +79,8 @@
 
 
 						// get the influence from key1
-						var inTemp = property.keyInTemporalEase(key1) as KeyframeEase[]
-						var outTemp = property.keyOutTemporalEase(key1) as KeyframeEase[]
+						const inTemp = property.keyInTemporalEase(key1) as KeyframeEase[]
+						const outTemp = property.keyOutTemporalEase(key1) as KeyframeEase[]
 
 						if (inTemp.length > 0) {
 							inInfluence = inTemp[0].influence
@@ -88,10 +89,10 @@
 							outInfluence = outTemp[0].influence
 						}
 
-						let key1EaseIn = new KeyframeEase(speed, storeInfluence[0].in)
-						let key1EaseOut = new KeyframeEase(speed, storeInfluence[0].out)
-						let key2EaseIn = new KeyframeEase(speed, storeInfluence[1].in)
-						let key2EaseOut = new KeyframeEase(speed, storeInfluence[1].out)
+						const key1EaseIn = new KeyframeEase(speed, storeInfluence[0].in)
+						const key1EaseOut = new KeyframeEase(speed, storeInfluence[0].out)
+						const key2EaseIn = new KeyframeEase(speed, storeInfluence[1].in)
+						const key2EaseOut = new KeyframeEase(speed, storeInfluence[1].out)
 
 						// let key1Return: [KeyframeEase]
 						let key1Return: [KeyframeEase, ...KeyframeEase[]]

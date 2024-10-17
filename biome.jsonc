@@ -1,5 +1,5 @@
 {
-    "schema": "https://biomejs.dev/schemas/1.9.3/schema.json",
+    "$schema": "https://biomejs.dev/schemas/1.9.3/schema.json",
     "formatter": {
         "enabled": false
     },
@@ -8,6 +8,14 @@
         "rules": {
             "complexity": {
                 "noForEach": "off"
+            },
+            "style": {
+                "noParameterAssign": "off",
+                "useExponentiationOperator": "off"
+            },
+            "suspicious": {
+                "noAssignInExpressions": "off",
+                "useIsArray": "off"
             }
         }
     },

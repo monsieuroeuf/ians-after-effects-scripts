@@ -4,6 +4,7 @@
 	"description": "",
 	"main": "index.js",
 	"dependencies": {
+		"@biomejs/biome": "^1.9.3",
 		"aequery": "github:monsieuroeuf/aequery",
 		"chokidar": "^3.6.0",
 		"types-for-adobe": "git+https://github.com/monsieuroeuf/Types-for-Adobe#dev"

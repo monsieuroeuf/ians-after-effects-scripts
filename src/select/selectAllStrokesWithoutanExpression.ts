@@ -10,7 +10,7 @@
 
 	app.beginUndoGroup("Select all strokes without an expression")
 
-	var layers = aeq.getSelectedLayersOrAll()
+	const layers = aeq.getSelectedLayersOrAll()
 
 	layers.forEach((currentLayer: Layer) => {
 		// omg use regular expressions with aeq

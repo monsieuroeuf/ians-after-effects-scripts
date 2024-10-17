@@ -19,7 +19,7 @@ type EaseFunction = (t: number, b: number, c: number, d: number) => number
 	let currentTime = BEGINNING
 
 	const quadEaseOut: EaseFunction = (t, b, c, d) => {
-		if (t == d) { return c }
+		if (t === d) { return c }
 		return -c * (t /= d) * (t - 2) + b
 	}
 
@@ -32,7 +32,7 @@ type EaseFunction = (t: number, b: number, c: number, d: number) => number
 	}
 
 	const expoEaseOut: EaseFunction = (t, b, c, d) => {
-		return (t == d) ? b + c : c * (-Math.pow(2, -10 * t / d) + 1) + b
+		return (t === d) ? b + c : c * (-Math.pow(2, -10 * t / d) + 1) + b
 	}
 
 	// change the function here to get different easing
@@ -46,10 +46,10 @@ type EaseFunction = (t: number, b: number, c: number, d: number) => number
 	const selectedLayers = aeq.getSelectedLayersOrAll()
 	const increment      = (TOTAL_DURATION / selectedLayers.length) * 0.5
 
-	for (let currentLayer of selectedLayers) {
+	for (const currentLayer of selectedLayers) {
 
-		var inPoint  = tween(currentTime, BEGINNING, END, TOTAL_DURATION)
-		var outPoint = tween(currentTime + increment, BEGINNING, END, TOTAL_DURATION)
+		const inPoint  = tween(currentTime, BEGINNING, END, TOTAL_DURATION)
+		const outPoint = tween(currentTime + increment, BEGINNING, END, TOTAL_DURATION)
 
 		currentLayer.inPoint   = inPoint
 		currentLayer.outPoint  = outPoint

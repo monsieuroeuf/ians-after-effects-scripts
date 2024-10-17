@@ -15,7 +15,7 @@
 	const selectedLayers = aeq.getSelectedLayers()
 
 	selectedLayers.forEach((selectedLayer: Layer) => {
-		var theKids = aeq.layer.allChildren(selectedLayer)
+		const theKids = aeq.layer.allChildren(selectedLayer)
 		theKids.forEach((kid: Layer) => {
 			kid.selected = true
 		})
