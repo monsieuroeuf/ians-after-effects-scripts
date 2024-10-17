@@ -7,7 +7,7 @@
 
 (function selectLayersWithoutParents() {
 
-	//@include "./lib/aequery.js"
+	//@include "../lib/aequery.js"
 	app.beginUndoGroup("Select layers without parents")
 
 	aeq.forEachLayer(aeq.getActiveComp(), (layer: Layer) => {

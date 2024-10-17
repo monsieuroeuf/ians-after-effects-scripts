@@ -12,7 +12,7 @@
 type InOrOut = "inPoint" | "outPoint"
 
 (function selectLayersAfterNow() {
-	//@include "./lib/aequery.js"
+	//@include "../lib/aequery.js"
 	app.beginUndoGroup("Select layers after now")
 
 	const thisComp = aeq.getActiveComp()

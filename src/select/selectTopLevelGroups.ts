@@ -11,7 +11,7 @@
  */
 
 (function selectTopLevelGroups() {
-	//@include "./lib/aequery.js"
+	//@include "../lib/aequery.js"
 	clearOutput()
 
 	app.beginUndoGroup("Group Groups into a Group")

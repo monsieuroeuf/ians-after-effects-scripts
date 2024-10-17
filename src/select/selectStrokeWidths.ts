@@ -5,7 +5,7 @@
  */
 
 (function selectStrokeWidths() {
-	//@include "./lib/aequery.js"
+	//@include "../lib/aequery.js"
 
 	aeq.forEachProperty(aeq.getSelectedLayers(), (currentProp: Property) => {
 		if (currentProp.name === "Stroke Width") {

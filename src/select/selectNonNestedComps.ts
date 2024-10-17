@@ -5,7 +5,7 @@
  */
 
 (function selectNonNestedComps() {
-	//@include "./lib/aequery.js"
+	//@include "../lib/aequery.js"
 	app.beginUndoGroup("Select Non-nested Comps")
 
 	aeq.getCompositions().forEach((comp: CompItem) => {

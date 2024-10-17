@@ -7,8 +7,8 @@
 
 
 (function selectPropertiesByRegexp() {
-	//@include "./lib/aequery.js"
-	//@include "./lib/IanLib.js"
+	//@include "../lib/aequery.js"
+	//@include "../lib/IanLib.js"
 
 	const DEBUGGING = false
 	const KEY_NAME = "selectPropertyByString"

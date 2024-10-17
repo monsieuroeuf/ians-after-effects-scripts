@@ -5,7 +5,7 @@
  */
 
 (function selectAllPathProps() {
-	//@include "./lib/aequery.js"
+	//@include "../lib/aequery.js"
 
 	app.beginUndoGroup("Select path properties")
 

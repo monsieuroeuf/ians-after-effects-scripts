@@ -7,7 +7,7 @@
 
 (function selectAllColourProperties() {
 
-	//@include "./lib/aequery.js"
+	//@include "../lib/aequery.js"
 	app.beginUndoGroup("Select all the color props")
 	var layers = aeq.getSelectedLayersOrAll()
 

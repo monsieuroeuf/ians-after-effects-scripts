@@ -7,7 +7,7 @@
  */
 
 (function selectEllipses() {
-	//@include "./lib/aequery.js"
+	//@include "../lib/aequery.js"
 	app.beginUndoGroup("Select ellipses")
 
 	let shapeLayers = aeq.getSelectedLayersOrAll().filter( (layer:Layer) => {

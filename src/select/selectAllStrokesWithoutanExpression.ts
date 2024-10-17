@@ -6,7 +6,7 @@
  */
 
 (function selectStrokesWithoutExpression() {
-	//@include "./lib/aequery.js"
+	//@include "../lib/aequery.js"
 
 	app.beginUndoGroup("Select all strokes without an expression")
 
@@ -21,7 +21,7 @@
 			try {
 				item.selected = true
 			} catch (e) {
-				$.writeln(e)
+				writeLn(e);
 			}
 		})
 	})

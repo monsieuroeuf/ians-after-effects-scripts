@@ -6,7 +6,7 @@
  */
 
 (function selectStrokeColours() {
-	//@include "./lib/aequery.js"
+	//@include "../lib/aequery.js"
 	const STROKE_MATCHNAME = "ADBE Vector Stroke Color"
 
 	app.beginUndoGroup("Select stroke colours")

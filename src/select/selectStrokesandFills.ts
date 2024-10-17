@@ -12,7 +12,7 @@
  */
 
 (function selectStrokesAndFills() {
-	//@include "./lib/aequery.js"
+	//@include "../lib/aequery.js"
 	const defaultMatch = "ADBE Vector Graphic - (Stroke|Fill)"
 	const strokeOnly   = "ADBE Vector Graphic - Stroke"
 	const fillOnly     = "ADBE Vector Graphic - Fill"
