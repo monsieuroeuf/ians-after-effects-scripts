@@ -11,7 +11,7 @@
 	},
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1",
-		"build": "tsc -p . && npm run copy-lib",
+		"build": "tsc -p . && npm run copy-lib && node rename.js --one-off",
 		"watch": "concurrently \"tsc -p . --watch\" \"node rename.js\"",
 		"clean": "rimraf ./ae-scripts-dist && npm run build",
 		"docs": "documentation build dist/*js -f md -o readme.md",
