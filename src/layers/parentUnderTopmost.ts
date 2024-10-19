@@ -6,7 +6,7 @@
  */
 
 (function parentUnderTopmost() {
-	//@include "./lib/aequery.js"
+	//@include "../lib/aequery.js"
 	app.beginUndoGroup("Parent from topmost")
 
 	const activeComp = app.project.activeItem as CompItem
@@ -20,7 +20,7 @@
 	// if it's in an existing hierarchy, take it out
 	topLayer.parent = null
 
-	for (let currentLayer of selectedLayers) {
+	for (const currentLayer of selectedLayers) {
 
 		// hide if the shift key is down
 		if (ScriptUI.environment.keyboardState.shiftKey) {

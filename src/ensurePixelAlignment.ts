@@ -20,12 +20,12 @@
 */
 
 (function ensurePixelAlignment() {
-    
+
     const activeItem = app.project.activeItem as CompItem
     const allLayers = activeItem.layers
-    
+
     const THRESHOLD = 2
-    
+
     app.beginUndoGroup("Ensure Pixel Alignment")
     clearOutput()
     writeLn(`Comp: ${activeItem.name}`)
@@ -35,11 +35,10 @@
     function getAbsolutePosition(layer: Layer) {
         if (layer.parent === null) {
             return layer.transform.position.value
-        } else {
-            const parentPosition = getAbsolutePosition(layer.parent)
-            const layerPosition = layer.transform.position.value
-            return [parentPosition[0] + layerPosition[0], parentPosition[1] + layerPosition[1]]
         }
+        const parentPosition = getAbsolutePosition(layer.parent)
+        const layerPosition = layer.transform.position.value
+        return [parentPosition[0] + layerPosition[0], parentPosition[1] + layerPosition[1]]
     }
 
     let misalignedLayerCount = 0

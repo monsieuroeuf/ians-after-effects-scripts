@@ -6,7 +6,7 @@
  */
 
 (function lastSelectedIsParent() {
-	//@include "./lib/aequery.js"
+	//@include "../lib/aequery.js"
 	app.beginUndoGroup("Last Selected is Parent")
 
 	// save the selected layers
@@ -19,7 +19,6 @@
 	lastSelected.parent = null
 
 	// re-parent 
-	// biome-ignore lint/complexity/noForEach: <explanation>
 		selectedLayers.forEach((currentLayer: Layer) => {
 		if (currentLayer.parent) {
 			// if currentLayer parent is one of the selected layers, then leave it alone

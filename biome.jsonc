@@ -11,7 +11,8 @@
             },
             "style": {
                 "noParameterAssign": "off",
-                "useExponentiationOperator": "off"
+                "useExponentiationOperator": "off",
+                "useNumberNamespace": "off"
             },
             "suspicious": {
                 "noAssignInExpressions": "off",

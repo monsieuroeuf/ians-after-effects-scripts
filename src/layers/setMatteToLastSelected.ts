@@ -6,7 +6,7 @@
  */
 
 (function lastSelectedIsMatte() {
-    //@include "./lib/aequery.js"
+    //@include "../lib/aequery.js"
     app.beginUndoGroup("Last Selected is Matte")
 
     // save the selected layers
@@ -20,7 +20,6 @@
         return
     }
 
-    // biome-ignore lint/complexity/noForEach: <explanation>
     selectedLayers.forEach((currentLayer: AVLayer) => {
         currentLayer.setTrackMatte(lastSelected, TrackMatteType.ALPHA)
     })

@@ -6,7 +6,7 @@
  */
 
 (function easeAlternateKeyframes() {
-	//@include "./lib/aequery.js"
+	//@include "../lib/aequery.js"
 
 	function figureOutDimensions(prop: Property) {
 		switch (prop.propertyValueType) {

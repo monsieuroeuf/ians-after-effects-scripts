@@ -26,13 +26,13 @@
 	app.beginUndoGroup("Quick Comp Prefixer")
 	const KEY_NAME = "quickCompPrefixer"
 
-	let selectedComps = aeq.project.getSelectedComps()
-	let defaultString = IanLib.getPref(KEY_NAME)
+	const selectedComps = aeq.project.getSelectedComps()
+	const defaultString = IanLib.getPref(KEY_NAME)
 
-	let s = Window.prompt("Prefix?", defaultString)
+	const s = Window.prompt("Prefix?", defaultString)
 	IanLib.setPref(KEY_NAME, s)
 
-	for (let currentComp of selectedComps) {
+	for (const currentComp of selectedComps) {
 		currentComp.name = `${s}${currentComp.name}`
 	}
 })()

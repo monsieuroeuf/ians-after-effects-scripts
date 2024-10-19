@@ -1,8 +1,8 @@
 //@target aftereffects
 
 enum beginningTimeType {
-	"layerInPoint",
-	"timeIndicator"
+	"layerInPoint" = 0,
+	"timeIndicator" = 1
 }
 
 /**
@@ -10,7 +10,7 @@ enum beginningTimeType {
  */
 
 (function evenlySpacedLayerMarkers() {
-	//@include "./lib/IanLib.js"
+	//@include "../lib/IanLib.js"
 
 	const activeItem = app.project.activeItem as CompItem
 	const selectedLayers = activeItem.selectedLayers
@@ -20,15 +20,15 @@ enum beginningTimeType {
 	const KEY_NAME = "EvenlySpacedLayerMarkers"
 	// const PREF_NAME = "markerIncrement"
 
-	let defaultString = IanLib.getPref(KEY_NAME)
-	let markerSpacingDurationString = prompt("Enter the number of frames between markers", defaultString)
-	let markerSpacingDuration = parseInt(markerSpacingDurationString)
+	const defaultString = IanLib.getPref(KEY_NAME)
+	const markerSpacingDurationString = prompt("Enter the number of frames between markers", defaultString)
+	const markerSpacingDuration = parseInt(markerSpacingDurationString)
 
 	if (markerSpacingDuration === 0) { return }
 
 	IanLib.setPref(KEY_NAME, markerSpacingDurationString)
 
-	var durationInFrames = activeItem.frameDuration * markerSpacingDuration
+	const durationInFrames = activeItem.frameDuration * markerSpacingDuration
 
 	// default is to start markers at each layer's in point
 	let beginningTimePref = beginningTimeType.layerInPoint
@@ -39,10 +39,10 @@ enum beginningTimeType {
 		beginningTimePref = beginningTimeType.timeIndicator
 	}
 
-	for (let currentLayer of selectedLayers) {
-		var counter = 1
+	for (const currentLayer of selectedLayers) {
+		let counter = 1
 
-		if (beginningTimePref == beginningTimeType.layerInPoint) {
+		if (beginningTimePref === beginningTimeType.layerInPoint) {
 			// default: start at each layer's in point
 			beginningTimeVal = currentLayer.inPoint
 		} else {
@@ -50,9 +50,9 @@ enum beginningTimeType {
 			beginningTimeVal = activeItem.time
 		}
 
-		for (var currentTime = beginningTimeVal; currentTime < activeItem.duration; currentTime += durationInFrames) {
-			var myMarker = new MarkerValue(counter.toString()) as MarkerValue
-			let markerProp = currentLayer.property("Marker") as Property
+		for (let currentTime = beginningTimeVal; currentTime < activeItem.duration; currentTime += durationInFrames) {
+			const myMarker = new MarkerValue(counter.toString()) as MarkerValue
+			const markerProp = currentLayer.property("Marker") as Property
 			markerProp.setValueAtTime(currentTime, myMarker)
 
 			counter++
