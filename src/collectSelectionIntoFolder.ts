@@ -19,7 +19,7 @@
         return
     }
 
-    let defaultName = IanLib.getPref(KEY_NAME)
+    const defaultName = IanLib.getPref(KEY_NAME)
     let newFolderName = defaultName
 
     // if alt key is held down OR if the default name is blank
@@ -28,13 +28,13 @@
         IanLib.setPref(KEY_NAME, newFolderName)
     }
 
-    var parentOfFirstItem = projectPanelSelection[0].parentFolder
-    var supportFolder = app.project.items.addFolder(newFolderName)
+    const parentOfFirstItem = projectPanelSelection[0].parentFolder
+    const supportFolder = app.project.items.addFolder(newFolderName)
     supportFolder.parentFolder = parentOfFirstItem
 
-    for (var i = 0; i < projectPanelSelection.length; i++) {
+    for (let i = 0; i < projectPanelSelection.length; i++) {
         // if (app.project.item(i) instanceof CompItem) app.project.item(i).parentFolder = supportFolder
-        var current = projectPanelSelection[i]
+        const current = projectPanelSelection[i]
         current.parentFolder = supportFolder
     }
     supportFolder.selected = true
