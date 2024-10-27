@@ -28,44 +28,43 @@ In theory.
 
 (function hierarchyCompRename() {
 
-    app.beginUndoGroup("Hierarchy comp rename")
+    app.beginUndoGroup("Hierarchy comp rename");
 
-    const projectPanelSelection = app.project.selection
+    const projectPanelSelection = app.project.selection;
     if (projectPanelSelection.length === 0) {
-        alert("Select some items in the Project Panel first.")
-        return
-    }
-
-    function descend(folder: FolderItem, prefix: string) {
-
-        for (let i = 1; i <= folder.numItems; i++) {
-            const currentItem = folder.item(i)
-            if (currentItem instanceof FolderItem) {
-                // skip if it starts with underscore
-                if (currentItem.name.slice(0, 1) === "_") {
-                    continue
-                }
-                descend(currentItem, `${prefix}/${currentItem.name}`)
-            } else {
-                // rename the item
-                if (currentItem instanceof CompItem) {
-                    // chop off the folder names
-                    const basename = currentItem.name.replace(/^.*\//, "")
-                    currentItem.name = `${prefix}/${basename}`
-                }
-            }
-        }
+        alert("Select some items in the Project Panel first.");
+        return;
     }
 
     for (const currentItem of projectPanelSelection) {
         if (currentItem instanceof FolderItem) {
             // loop through its contents
-
-            descend(currentItem, currentItem.name)
-
-
+            descend(currentItem, currentItem.name);
         }
     }
 
+    function descend(folder: FolderItem, prefix: string) {
+        const items = [];
+        for (let i = 1; i <= folder.numItems; i++) {
+            items.push(folder.item(i));
+        }
 
-})()
+        for (const currentItem of items) {
+            if (currentItem instanceof FolderItem) {
+                // skip if it starts with underscore
+                if (currentItem.name.slice(0, 1) === "_") {
+                    continue;
+                }
+                descend(currentItem, `${prefix}/${currentItem.name}`);
+            }
+            // rename the item
+            if (currentItem instanceof CompItem) {
+                // chop off the folder names
+                const basename = currentItem.name.replace(/^.*\//, "");
+                currentItem.name = `${prefix}/${basename}`;
+            }
+        }
+    }
+
+    app.endUndoGroup();
+})();
