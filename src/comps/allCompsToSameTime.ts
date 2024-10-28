@@ -16,10 +16,10 @@
 */
 
 (function allCompsToSameTime() {
-	//@include "./lib/aequery.js"
+	//@include "../lib/aequery.js"
 
 	const DEFAULT_TIME = 4
-	let compsToChange: _ItemClasses[] = []
+	const compsToChange: _ItemClasses[] = []
 
 	app.beginUndoGroup("All Comps to Same Time")
 

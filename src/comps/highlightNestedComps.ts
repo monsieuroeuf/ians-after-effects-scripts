@@ -7,7 +7,7 @@
  */
 
 (function highlightNestedComps() {
-	//@include "./lib/aequery.js"
+	//@include "../lib/aequery.js"
 	app.beginUndoGroup("Highlight Nested Comps");
 
 	// const selectedCompAry = aeq.getComps().filter((comp: CompItem) => comp.selected)

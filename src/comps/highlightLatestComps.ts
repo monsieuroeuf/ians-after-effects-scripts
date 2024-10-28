@@ -28,8 +28,8 @@ declare const _: any
  */
 
 (function highlightLatestComps() {
-    //@include "./lib/aequery.js"
-    //@include "./lib/underscore.js"
+    //@include "../lib/aequery.js"
+    //@include "../lib/underscore.js"
 
     // get all the comps, including those in folders
     const allComps = aeq.getCompositions(app.project.rootFolder, true)
