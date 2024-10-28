@@ -1,6 +1,6 @@
 //@target aftereffects
 
-(function () {
-    var total = app.project.selection.length;
+(function countProjectSelection() {
+    const total = app.project.selection.length
     alert(total.toString())
-})();
+})()
