@@ -15,9 +15,9 @@
     // this is the last layer that you've selected
     const lastSelected = selectedLayers.pop()
 
-    if (lastSelected instanceof AVLayer === false) {
-        alert("Last selected layer must be an AVLayer")
-        return
+    if (!(lastSelected instanceof AVLayer || lastSelected instanceof ShapeLayer)) {
+        alert("Last selected layer must be an AVLayer or ShapeLayer");
+        return;
     }
 
     selectedLayers.forEach((currentLayer: AVLayer) => {
