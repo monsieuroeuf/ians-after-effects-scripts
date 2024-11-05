@@ -21,7 +21,9 @@
     }
 
     // put the name of this comp on the clipboard
-    const compName = comp.name
+    let compName = comp.name
+    // delete everything up to the first slash
+    compName = compName.replace(/.*\//, "")
     system.callSystem(`echo ${compName} | pbcopy`)
 
    app.executeCommand(3075) 
