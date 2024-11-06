@@ -12,18 +12,21 @@
     app.beginUndoGroup("Quick Renamer")
     const KEY_NAME = "quickRenamer"
 
-    let defaultString = IanLib.getPref(KEY_NAME)
+    const defaultString = IanLib.getPref(KEY_NAME)
+    const newName = prompt("Layer prefix?", defaultString)
+
+    IanLib.setPref(KEY_NAME, newName)
 
     function renameThem(items: Layer[] | _ItemClasses[]) {
         for (let i = 0; i < items.length; i++) {
-            let currentItem = items[i]
-            currentItem.name = `yay:${i}`
+            const currentItem = items[i]
+            currentItem.name = `${defaultString}:${i}`
         }
     }
 
     // find out if project window or comp has focus
-    let proj = app.project
-    let comp = proj.activeItem as CompItem
+    const proj = app.project
+    const comp = proj.activeItem as CompItem
 
     let selectedItems: _ItemClasses[] | Layer[] = []
     if (comp && comp.selectedLayers.length > 0) {
@@ -46,5 +49,4 @@
     //     counter++
     // }
     renameThem(selectedItems)
-    $.writeln("hi")
 })()
