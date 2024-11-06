@@ -20,6 +20,15 @@
         // }
     }
 
+    // select any transform properties that have an expression
+    const transformGroup = selectedLayer.property("ADBE Transform Group") as PropertyGroup
+    for (let i = 1; i <= transformGroup.numProperties; i++) {
+        const prop = transformGroup.property(i) as Property
+        if (prop.expressionEnabled) {
+            prop.selected = true
+        }
+    }
+
     // put the name of this comp on the clipboard
     let compName = comp.name
     // delete everything up to the first slash
