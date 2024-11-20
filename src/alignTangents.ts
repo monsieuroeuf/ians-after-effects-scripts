@@ -1,5 +1,9 @@
-﻿// This script aligns the tangents between two selected keyframes in Adobe After Effects to have identical angles
-// Ensure two keyframes are selected before running the script
+﻿/**
+ * 
+This script aligns the tangents between two selected keyframes in Adobe After
+Effects to have identical angles. Ensure two keyframes are selected before
+running the script
+*/
 
 (function alignTangents() {
 
@@ -52,8 +56,8 @@
 
 						const storeInfluence = []
 
-						let inInfluence = 33.3 // Default influence value
-						let outInfluence = 33.3 // Default influence value
+						// let inInfluence = 33.3 // Default influence value
+						// let outInfluence = 33.3 // Default influence value
 
 						const speed = valueDiff / timeDiff
 
@@ -95,8 +99,8 @@
 						const key2EaseOut = new KeyframeEase(speed, storeInfluence[1].out)
 
 						// let key1Return: [KeyframeEase]
-						let key1Return: [KeyframeEase, ...KeyframeEase[]]
-						let key2Return: [KeyframeEase, ...KeyframeEase[]]
+						// let key1Return: [KeyframeEase, ...KeyframeEase[]]
+						// let key2Return: [KeyframeEase, ...KeyframeEase[]]
 						// Set the tangents for the first key
 						property.setTemporalContinuousAtKey(key1, true)
 						property.setTemporalAutoBezierAtKey(key1, false)
