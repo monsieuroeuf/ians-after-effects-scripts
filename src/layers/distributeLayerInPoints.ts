@@ -1,52 +1,52 @@
 //@target aftereffects
 
 /**
- * There are many scripts out there that do this … but this is mine. It
- * distributes selected layers, by frame, starting where you have the time indicator.
+ * Given a bunch of selected layers, this script will distribute them evenly in time.
  */
 
 (function distributeLayerInPoints() {
-	//@include "../lib/aequery.js"
-	//@include "../lib/IanLib.js"
 
-	function distributeInPoints() {
-		// to save the settings between invocations
-		const KEY_NAME = "distributeLayerInPoints"
+    const thisComp = app.project.activeItem as CompItem
+    const selectedLayers = thisComp.selectedLayers
 
-		let defaultAmt = IanLib.getPref(KEY_NAME)
-		if (defaultAmt === "") defaultAmt = "5"
+    let minTime = thisComp.duration
+    let maxTime = thisComp.displayStartTime
 
-		const amt = prompt("Frames between inPoints?", defaultAmt)
-		if (amt == null) {
-			write("User cancelled.")
-			return
-		}
-		
-		IanLib.setPref(KEY_NAME, amt)
+    // figure out the min and max times
+    for (let c = 0; c < selectedLayers.length; c++) {
+        if (selectedLayers[c].inPoint < minTime) {
+            minTime = selectedLayers[c].inPoint
+        }
+        if (selectedLayers[c].inPoint > maxTime) {
+            maxTime = selectedLayers[c].inPoint
+        }
+    }
 
-		const thisComp = app.project.activeItem as CompItem
-		const thisFPS  = thisComp.frameRate
+/*     selectedLayers.sort((a, b) => {
+        return a.index - b.index
+    }) */
 
-		const durationToDistribute = currentFormatToTime(amt, thisFPS, true)
+    app.beginUndoGroup("Distribute in points")
+    clearOutput()
 
-		// uncomment if you prefer seconds
-		// durationToDistribute *= thisFPS
+    const gapBetweenLayers = (maxTime - minTime) / (selectedLayers.length-1)
 
-		const selectedLayers = thisComp.selectedLayers
+    // var beginTime = selectedLayers[0].startTime
+    // const beginTime = thisComp.time
+    /*
+    let layerCounter = selectedLayers.length - 1
+    for (let c = minTime; c <= maxTime; c += gapBetweenLayers) {
+        selectedLayers[layerCounter].inPoint = c
+        layerCounter--
+    }
+        */
 
-		selectedLayers.sort((a, b) => {
-			return b.index - a.index
-		})
+    for (let c = 0; c < selectedLayers.length; c++) {
+        selectedLayers[c].inPoint = gapBetweenLayers * c + minTime
+    }
 
-		app.beginUndoGroup("Distribute in points")
-
-		// var beginTime = selectedLayers[0].startTime
-		const beginTime = thisComp.time
-		for (let c = 0; c < selectedLayers.length; c++) {
-			selectedLayers[c].startTime = durationToDistribute * c + beginTime
-		}
-	}
-
-	distributeInPoints()
+    writeLn(`Gap between layers: ${gapBetweenLayers}`)
+    writeLn(`Min time: ${minTime}`)
+    writeLn(`Max time: ${maxTime}`)
 
 })()
