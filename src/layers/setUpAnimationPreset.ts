@@ -32,8 +32,9 @@
     // put the name of this comp on the clipboard
     let compName = comp.name
     // delete everything up to the first slash
-    compName = compName.replace(/.*\//, "")
-    system.callSystem(`echo ${compName} | pbcopy`)
+    compName = compName.replace(/.*\//, "").replace(/\s+$/, "")
+    // system.callSystem(`echo -n "${compName}" | pbcopy`)
+    system.callSystem(`printf "%s" "${compName}" | pbcopy`)
 
    app.executeCommand(3075) 
 })()

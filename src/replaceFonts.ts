@@ -39,17 +39,17 @@ VodafoneRg-Regular
 
                 textDocument.autoKernType = AutoKernType.OPTICAL_KERN
                 switch (textDocument.font) {
-                    case "VodafoneRg-Regular":
-                        textDocument.font = "Vodafone-Regular"
+                    case "Vodafone-Regular":
+                        textDocument.font = "VodafoneRg-Regular"
                         break
-                    case "VodafoneRg-Bold":
-                        textDocument.font = "Vodafone-Bold"
+                    case "Vodafone-Bold":
+                        textDocument.font = "VodafoneRg-Bold"
                         break
-                    case "VodafoneLt-Regular":
-                        textDocument.font = "Vodafone-Light"
+                    case "Vodafone-Light":
+                        textDocument.font = "VodafoneLt-Regular"
                         break
-                    case "VodafoneExB-Regular":
-                        textDocument.font = "Vodafone-ExtraBold"
+                    case "Vodafone-ExtraBold":
+                        textDocument.font = "VodafoneExB-Regular"
                         break
                     default:
                         missingFonts.push(textDocument.font)
