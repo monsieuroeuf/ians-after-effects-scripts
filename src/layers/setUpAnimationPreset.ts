@@ -3,7 +3,7 @@
 (function setUpAnimationPreset() {
     const comp = app.project.activeItem as CompItem
     const selectedLayer = comp.selectedLayers[0]
-    if (selectedLayer.length === 0) {
+    if (selectedLayer === undefined) {
         alert("Please select a layer")
         return
     }
