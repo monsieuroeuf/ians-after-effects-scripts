@@ -57,13 +57,13 @@ type Ancestor = {
         }
 
         function saveState() {
-            let tree: FamilyTree = {
+            const tree: FamilyTree = {
                 compID: thisComp.id.toString(),
                 compName: thisComp.name,
                 compTime: thisComp.time,
                 memo: []
             }
-            let memo: Ancestor[] = []
+            const memo: Ancestor[] = []
             for (let c = 1; c <= layers.length; c++) {
                 const currentLayer = layers[c]
                 if (currentLayer.parent !== null) {
@@ -93,7 +93,7 @@ type Ancestor = {
 
             thisComp.time = tree.compTime
 
-            for (let item of memo) {
+            for (const item of memo) {
                 const layer = app.project.layerByID(item.layerID)
                 const parent = app.project.layerByID(item.parentID)
                 layer.parent = parent

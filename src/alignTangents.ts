@@ -56,8 +56,8 @@ running the script
 
 						const storeInfluence = []
 
-						// let inInfluence = 33.3 // Default influence value
-						// let outInfluence = 33.3 // Default influence value
+						let inInfluence = 33.3 // Default influence value
+						let outInfluence = 33.3 // Default influence value
 
 						const speed = valueDiff / timeDiff
 
