@@ -47,6 +47,15 @@
       "}"
     ],
     "description": "layer loop"
-  }
+  },
+  "ae-starter": {
+    "prefix": "ae",
+    "body": [
+      "    const project = app.project",
+      "    const comp = project.activeItem as CompItem",
+      "    const layers = comp.selectedLayers as AVLayer[]"
+    ],
+    "description": "ae-starter"
+  },
   
 }
