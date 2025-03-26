@@ -1,7 +1,7 @@
 // biome-ignore lint/complexity/noStaticOnlyClass: <explanation>
 class IanLib {
     private static readonly SECTION_NAME       = "com.ianhaigh.aescripts"
-    private static readonly FUZZY_COMPS_FILE   = "fuzzyComps.txt"
+    private static readonly FUZZY_COMPS_FILE   = "fuzzyComps.json"
     private static readonly FUZZY_FILE_TO_OPEN = "fuzzyOpen.txt"
 
 
@@ -11,8 +11,7 @@ class IanLib {
 
     // Get a path to the user's settings folder 
     static getSettingsFolderPath(): string {
-        // biome-ignore lint/style/useTemplate: <explanation>
-        const path = Folder.userData.fsName + "/" + IanLib.getSectionName()
+        const path = `${Folder.userData.fsName}/${IanLib.getSectionName()}`
 
         if (!File(path).exists) {
             if (!Folder(path).create()) {
@@ -24,14 +23,12 @@ class IanLib {
 
     // Get a file object pointing to fuzzyOpen JSON
     static getFuzzyOpenFile(): File {
-        // biome-ignore lint/style/useTemplate: <explanation>
-        return new File(IanLib.getSettingsFolderPath() + "/" + IanLib.FUZZY_FILE_TO_OPEN)
+        return new File(`${IanLib.getSettingsFolderPath()}/${IanLib.FUZZY_FILE_TO_OPEN}`)
     }
 
     // Get a file object pointing to fuzzyComps JSON
     static getFuzzyCompsFile(): File {
-        // biome-ignore lint/style/useTemplate: <explanation>
-        return new File(IanLib.getSettingsFolderPath() + "/" + IanLib.FUZZY_COMPS_FILE)
+        return new File(`${IanLib.getSettingsFolderPath()}/${IanLib.FUZZY_COMPS_FILE}`)
     }
 
     // Retrieve an AE preference. If it doesn't exist, create it with a blank value

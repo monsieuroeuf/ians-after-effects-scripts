@@ -15,66 +15,6 @@
   // 	],
   // 	"description": "Log output to console"
   // }
-  "writeln": {
-    "prefix": "wl",
-    "scope": "javascript, typescript",
-    "body": [
-      "writeLn(${1:${2:\"$0\"}});"
-    ],
-    "description": "writeLn"
-  },
-  "Include aescripts": {
-    "scope": "javascript,typescript",
-    "prefix": "inc",
-    "body": [
-      "//@include \"./lib/aequery.js\""
-    ],
-    "description": "Include aescripts"
-  },
-  "Target AE": {
-    "scope": "javascript,typescript",
-    "prefix": "tar",
-    "body": [
-      "//@target aftereffects"
-    ],
-    "description": "Target ae"
-  },
-  "Inc ianlib": {
-    "scope": "typescript",
-    "prefix": "ian",
-    "body": [
-      "//@include \"./lib/IanLib.js\""
-    ]
-  },
-  "layer loop": {
-    "prefix": "for",
-    "body": [
-      "for (let c=1; c<=${1:layers}.length; c++) {",
-      "  const currentLayer = ${1:layers}[c]",
-      "  $2",
-      "}"
-    ],
-    "description": "layer loop"
-  },
-  "ae-starter": {
-    "prefix": "ae",
-    "body": [
-      "//@target aftereffects",
-      "",
-      "/**",
-      " * ${CURRENT_YEAR}-${CURRENT_MONTH}-${CURRENT_DATE}",
-      " * ${1}",
-      " */",
-      "",
-      "(function $TM_FILENAME_BASE() {",
-      "    const thisComp = app.project.activeItem as CompItem",
-      "    const selectedLayers = thisComp.selectedLayers",
-      "",
-      "    app.beginUndoGroup(\"$TM_FILENAME_BASE\")",
-      "",
-      "    ${3}",
-      "})()"
-    ],
-    "description": "ae-starter"
-  }
+  
+  
 }
