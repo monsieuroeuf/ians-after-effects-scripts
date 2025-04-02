@@ -13,15 +13,18 @@
     const selectedLayers = aeq.getSelectedLayers() as AEQArrayEx<Layer>
 
     // this is the last layer that you've selected
-    const lastSelected = selectedLayers.pop()
+    const thatMatte = selectedLayers.pop()
 
-    if (!(lastSelected instanceof AVLayer || lastSelected instanceof ShapeLayer)) {
+    if (!(thatMatte instanceof AVLayer || thatMatte instanceof ShapeLayer)) {
         alert("Last selected layer must be an AVLayer or ShapeLayer");
         return;
     }
 
     selectedLayers.forEach((currentLayer: AVLayer) => {
-        currentLayer.setTrackMatte(lastSelected, TrackMatteType.ALPHA)
+        currentLayer.setTrackMatte(thatMatte, TrackMatteType.ALPHA)
     })
+
+    // turn the visibility of the matte back on
+    thatMatte.enabled = true
 
 })()
