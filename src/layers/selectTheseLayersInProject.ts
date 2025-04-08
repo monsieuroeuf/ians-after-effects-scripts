@@ -12,6 +12,6 @@
     const comp = project.activeItem as CompItem
     const layers = comp.selectedLayers as AVLayer[]
     for (const current of layers) {
-        current.source.selected = true
+        if (current.source) current.source.selected = true
     }
 })()
