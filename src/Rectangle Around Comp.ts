@@ -9,13 +9,13 @@
 (function rectangleAroundComp() {
 	app.beginUndoGroup("CompRect")
 
-	let comp = app.project.activeItem as CompItem
+	const comp = app.project.activeItem as CompItem
 
-	let newShape = comp.layers.addShape()
+	const newShape = comp.layers.addShape()
 	// let shapeGroup = newShape.property("Contents").addProperty("ADBE Vector Group")
 	// let rect = shapeGroup.property("Contents").addProperty("ADBE Vector Shape - Rect") as Property<Shape>
-	let shapeGroup = newShape.property("Contents") as PropertyGroup
-	let rect = shapeGroup.addProperty("ADBE Vector Shape - Rect") 
+	const shapeGroup = newShape.property("Contents") as PropertyGroup
+	const rect = shapeGroup.addProperty("ADBE Vector Shape - Rect") 
 
 	const layerColours = {
 		blue: [0, 0.5, 0.9],
