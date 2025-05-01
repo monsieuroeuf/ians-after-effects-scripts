@@ -2,7 +2,7 @@
 
 // biome-ignore lint/suspicious/noShadowRestrictedNames: <explanation>
 // biome-ignore lint/suspicious/noExplicitAny: <explanation>
-declare let JSON               : any
+declare let JSON: any
 // biome-ignore lint/suspicious/noExplicitAny: <explanation>
 declare let FUZZYOPEN_LISTCOMPS: any
 
@@ -23,6 +23,7 @@ if (typeof FUZZYOPEN_LISTCOMPS !== "object") {
 	//@include "./lib/IanLib.js"
 
 	const DEBUGGING = true
+	clearOutput()
 
 
 	const writeFuzzyJSON = () => {
@@ -47,6 +48,7 @@ if (typeof FUZZYOPEN_LISTCOMPS !== "object") {
 		// pretty print the JSON
 		fuzzyFile.write(JSON.stringify(results, null, "\t"))
 		fuzzyFile.close()
+		writeLn(`Wrote ${allComps.length} comps.`)
 	}
 
 	if (DEBUGGING) {
@@ -58,6 +60,7 @@ if (typeof FUZZYOPEN_LISTCOMPS !== "object") {
 			FUZZYOPEN_LISTCOMPS.update = writeFuzzyJSON
 		}
 	}
+
 
 })()
 FUZZYOPEN_LISTCOMPS.update()
