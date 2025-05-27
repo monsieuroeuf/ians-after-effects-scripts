@@ -3,6 +3,11 @@
     "formatter": {
         "enabled": false
     },
+    "files": {
+        "ignore": [
+            "ae-scripts-dist/**"
+        ]
+    },
     "linter": {
         "enabled": true,
         "rules": {

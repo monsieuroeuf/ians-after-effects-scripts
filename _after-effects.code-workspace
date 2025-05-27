@@ -1,11 +1,13 @@
 {
 	"folders": [
 		{
-			"path": "."
+			"path": ".",
 		}
 	],
 	"settings": {
 		"files.exclude": {
+			"ae-scripts-dist": true,
+			"node_modules": true,
 			"**/.git": true,
 			"**/.DS_Store": true,
 			"**/*.swp": true,

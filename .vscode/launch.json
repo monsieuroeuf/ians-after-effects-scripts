@@ -5,6 +5,16 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "type": "extendscript-debug",
+            "request": "launch",
+            "name": "Launch Script in ExtendScript Engine"
+        },
+        {
+            "type": "extendscript-debug",
+            "request": "attach",
+            "name": "Attach to ExtendScript Engine"
+        },
+        {
             "type": "node",
             "request": "launch",
             "name": "Launch Program",
